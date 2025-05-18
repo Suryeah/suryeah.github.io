@@ -363,6 +363,7 @@ section {
   gap: 1.2rem;
   max-width: 400px;
   margin: 0 auto;
+  text-align: justify; /* Add justified alignment */
 }
 .contact-form input,
 .contact-form textarea {
@@ -375,6 +376,13 @@ section {
   font-family: inherit;
   resize: none;
   transition: border 0.2s, box-shadow 0.2s;
+  text-align: justify; /* Add justified alignment for input/textarea */
+  width: 100%; /* Ensure all fields are the same width */
+  box-sizing: border-box;
+}
+.contact-form textarea {
+  min-height: 100px; /* Reasonable height for message box */
+  max-height: 220px;
 }
 .contact-form input:focus,
 .contact-form textarea:focus {
