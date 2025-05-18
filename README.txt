@@ -2,8 +2,8 @@ This is my Portfolio , a simple, single page responsive site. It features a
 clean, minimalistic design and a sticky sidebar with navigation-linked scrolling.
 
 Surya Vardhan 
-Embedded Engineer 
-Senpronics, Bangalore. 
+Senior Embedded Engineer 
+Bosch, Bangalore. 
 
 
 Credits:
