@@ -181,7 +181,7 @@ const Hero = () => {
       <div className="scroll-down-indicator" style={{
         position: 'absolute',
         left: '50%',
-        bottom: '24px',
+        bottom: '6vh', // Move up for better visibility
         transform: 'translateX(-50%)',
         zIndex: 2,
         display: 'flex',
