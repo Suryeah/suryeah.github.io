@@ -1,0 +1,1 @@
+// Removed ThemeContext.js as ThemeContext.jsx exists to avoid import confusion.

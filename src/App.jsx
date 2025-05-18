@@ -20,6 +20,10 @@ function AppContent() {
       document.body.classList.remove('scroll-lock');
       document.getElementById('root').classList.remove('scroll-lock');
     }, 1300);
+
+    // Always scroll to top on route change
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
     return () => clearTimeout(timer);
   }, [location]);
 
@@ -38,6 +42,7 @@ function AppContent() {
         <Route path="/education" element={<EducationPage />} />
         <Route path="/experience" element={<ExperiencePage />} />
         <Route path="/catchme" element={<CatchMePage />} />
+        <Route path="*" element={<div style={{padding:'2rem',textAlign:'center'}}>404 - Page Not Found</div>} />
       </Routes>
     </div>
   );
