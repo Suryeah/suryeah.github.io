@@ -1,153 +1,181 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTheme } from './ThemeContext.jsx';
 
-const SKILLS = [
-  // Languages
-  { name: 'C', icon: '💻', category: 'Language' },
-  { name: 'C++', icon: '💻', category: 'Language' },
-  { name: 'Python', icon: '🐍', category: 'Language' },
-  { name: 'Shell Scripting', icon: '💻', category: 'Language' },
-  // OS/Environment
-  { name: 'Linux', icon: '🐧', category: 'Environment/OS' },
-  { name: 'Unix', icon: '🐧', category: 'Environment/OS' },
-  { name: 'Embedded Linux', icon: '🐧', category: 'Environment/OS' },
-  { name: 'FreeRTOS', icon: '🕒', category: 'Environment/OS' },
-  { name: 'RTOS', icon: '🕒', category: 'Environment/OS' },
-  // MCU/MPU
-  { name: 'Microcontrollers', icon: '🔌', category: 'MCU/MPU' },
-  { name: '8051 Microcontroller', icon: '🔌', category: 'MCU/MPU' },
-  { name: 'ARM Cortex-M', icon: '🔌', category: 'MCU/MPU' },
-  { name: 'STM32', icon: '🔌', category: 'MCU/MPU' },
-  { name: 'ESP32', icon: '🔌', category: 'MCU/MPU' },
-  { name: 'ESP8266', icon: '🔌', category: 'MCU/MPU' },
-  { name: 'Microchip PIC', icon: '🔌', category: 'MCU/MPU' },
-  // Protocols & Interfaces
-  { name: 'I2C', icon: '🔗', category: 'Protocol' },
-  { name: 'SPI', icon: '🔗', category: 'Protocol' },
-  { name: 'UART', icon: '🔗', category: 'Protocol' },
-  { name: 'CAN', icon: '🔗', category: 'Protocol' },
-  // Tools
-  { name: 'GNU Make', icon: '🛠️', category: 'Tool' },
-  { name: 'GNU Debugger', icon: '🛠️', category: 'Tool' },
-  { name: 'GNU Compiler Collection (GCC)', icon: '🛠️', category: 'Tool' },
-  { name: 'Code Composer Studio', icon: '🛠️', category: 'Tool' },
-  { name: 'LabVIEW', icon: '🛠️', category: 'Tool' },
-  { name: 'Autodesk Fusion 360', icon: '🖥️', category: 'Tool' },
-  // Engineering/Domain
-  { name: 'Embedded Systems', icon: '🛠️', category: 'Domain' },
-  { name: 'Embedded Software', icon: '🛠️', category: 'Domain' },
-  { name: 'Firmware', icon: '🛠️', category: 'Domain' },
-  { name: 'Board Support Package (BSP)', icon: '🛠️', category: 'Domain' },
-  { name: 'Device Drivers', icon: '🛠️', category: 'Domain' },
-  { name: 'Board Bring-up', icon: '🛠️', category: 'Domain' },
-  { name: 'Product Development', icon: '🛠️', category: 'Domain' },
-  { name: 'Low-Level Design', icon: '🛠️', category: 'Domain' },
-  { name: 'Motor Control', icon: '⚡', category: 'Domain' },
-  { name: 'Digital Signal Processing', icon: '🎵', category: 'Domain' },
-  { name: '3D Printing', icon: '🖨️', category: 'Domain' },
-  // Soft Skills
-  { name: 'Problem Solving', icon: '🧠', category: 'Soft Skill' },
-  { name: 'Teamwork', icon: '🤝', category: 'Soft Skill' },
-  { name: 'Leadership', icon: '🧑‍💼', category: 'Soft Skill' },
-  { name: 'Public Speaking', icon: '🗣️', category: 'Soft Skill' },
-  { name: 'Agile Project Management', icon: '📈', category: 'Soft Skill' },
-  { name: 'Scrum', icon: '📈', category: 'Soft Skill' },
-  { name: 'Agile Methodologies', icon: '📈', category: 'Soft Skill' },
-  // Other
-  { name: 'English', icon: '🇬🇧', category: 'Other' },
+const SKILL_CATEGORIES = [
+  {
+    label: 'Languages',
+    icon: '💻',
+    accent: '#2d6cdf',
+    description: 'Programming & scripting languages',
+    items: ['C', 'Embedded C', 'C++', 'Python', 'Shell Scripting', 'Assembly'],
+  },
+  {
+    label: 'Protocols & Interfaces',
+    icon: '🔗',
+    accent: '#0ea5e9',
+    description: 'Communication & bus protocols',
+    items: ['I2C', 'SPI', 'UART', 'CAN / CAN-FD', 'OCPP', 'TCP/IP', 'Wireless (Wi-Fi / BLE)'],
+  },
+  {
+    label: 'OS & RTOS',
+    icon: '🐧',
+    accent: '#16a34a',
+    description: 'Operating systems & real-time kernels',
+    items: ['Linux', 'Embedded Linux', 'Unix', 'FreeRTOS', 'RTOS', 'TI RTOS'],
+  },
+  {
+    label: 'Microcontrollers (MCU)',
+    icon: '🔌',
+    accent: '#7c3aed',
+    description: 'Bare-metal & RTOS targets',
+    items: ['STM32 (M0+, M3, M4)', 'ESP32', 'ESP8266', '8051', 'ATMega328', 'Teensy (MK64, MK66, iMXRT1062)', 'Microchip PIC', 'ARM Cortex-M'],
+  },
+  {
+    label: 'Microprocessors (MPU)',
+    icon: '🧠',
+    accent: '#db2777',
+    description: 'Application-class SoC platforms',
+    items: ['ARM Cortex-A Series', 'TI AM263', 'TI AM64', 'TI AM68', 'TI AM69'],
+  },
+  {
+    label: 'IDEs & Build Tools',
+    icon: '🛠️',
+    accent: '#d97706',
+    description: 'Development & compilation toolchains',
+    items: ['STM32CubeIDE', 'Keil µVision', 'IAR Embedded Workbench', 'Code Composer Studio', 'ESP-IDF', 'Arduino IDE', 'VS Code', 'GNU Make', 'GCC', 'GDB', 'Proteus'],
+  },
+  {
+    label: 'Domain Expertise',
+    icon: '⚙️',
+    accent: '#059669',
+    description: 'Core engineering specialisations',
+    items: ['Firmware Development', 'Device Drivers', 'Board Support Package (BSP)', 'Board Bring-up', 'Embedded Software', 'Low-Level Design', 'Motor Control', 'Digital Signal Processing', 'Product Development', '3D Printing (Autodesk Fusion 360)'],
+  },
+  {
+    label: 'AI / ML & Edge Intelligence',
+    icon: '🤖',
+    accent: '#9333ea',
+    description: 'On-device inference & edge AI',
+    items: ['TensorFlow Lite (TFLite)', 'TinyML', 'Edge AI', 'ONNX Runtime', 'OpenCV', 'Signal Classification', 'Anomaly Detection', 'NumPy / SciPy', 'Jupyter Notebooks', 'Model Quantization & Pruning'],
+  },
+  {
+    label: 'Hardware & Debug Tools',
+    icon: '🔭',
+    accent: '#0891b2',
+    description: 'Lab instruments & debug probes',
+    items: ['Oscilloscope', 'Logic Analyzer', 'JTAG / SWD Debugger', 'J-Link / ST-Link', 'Multimeter', 'Signal Generator', 'Power Analyzer', 'CAN Analyzer', 'Saleae Logic', 'Function Generator'],
+  },
+  {
+    label: 'Version Control & Collaboration',
+    icon: '🗂️',
+    accent: '#4f46e5',
+    description: 'Source control & project tracking',
+    items: ['Git', 'GitHub', 'GitLab', 'Bitbucket', 'JIRA', 'Confluence', 'Code Review', 'CI/CD Pipelines'],
+  },
+  {
+    label: 'Soft Skills',
+    icon: '🤝',
+    accent: '#ea580c',
+    description: 'Leadership & collaboration',
+    items: ['Leadership', 'Problem Solving', 'Teamwork', 'Public Speaking', 'Agile / Scrum', 'Technical Recruitment', 'Project Management'],
+  },
 ];
 
-const CODING_LANGUAGES = [
-  'C', 'C++', 'Python', 'Shell Scripting', 'Embedded C', 'Assembly', 'Programming', 'LabVIEW', 'Software Design', 'Low-Level Design', 'Firmware', 'Embedded Software', 'Device Drivers', 'Board Support Package (BSP)', 'Board Bring-up', 'GNU Make', 'GNU Debugger', 'GNU Compiler Collection (GCC)'
-];
-const PROTOCOLS = [
-  'I2C', 'SPI', 'UART', 'CAN', 'OCPP', 'Wireless Communications', 'Controller Area Network (CAN)', 'Service Provider Interface (SPI)', 'Universal Asynchronous Receiver/Transmitter (UART)'
-];
-const ENVIRONMENTS = [
-  'Linux', 'RTOS', 'FreeRTOS', 'TI RTOS'
-];
-const IDES = [
-  'VS Code', 'Arduino IDE', 'Keil', 'Proteus', 'STM32CubeIDE', 'Code Composer Studio', 'IAR IDE', 'ESP-IDF'
-];
-const MCUS = [
-  'STM32 (M0+, M3, M4)', 'ESP32', 'ESP8266', '8051', 'ATMega328', 'Teensy (MK64, MK66, iMXRT1062)', 'Microchip PIC'
-];
-const MPUS = [
-  'ARM Cortex-A Series', 'AM263', 'AM68', 'AM69'
-];
+const SkillTag = ({ label, accent, theme }) => (
+  <span style={{
+    display: 'inline-block',
+    padding: '4px 12px',
+    borderRadius: 20,
+    fontSize: 13,
+    fontWeight: 500,
+    background: theme === 'dark' ? `${accent}22` : `${accent}18`,
+    color: theme === 'dark' ? '#e2e8f0' : accent,
+    border: `1px solid ${accent}44`,
+    lineHeight: 1.5,
+    whiteSpace: 'nowrap',
+  }}>
+    {label}
+  </span>
+);
 
-const SkillCircle = ({ label, items, icon }) => {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <div
-      className="skill-circle"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        width: 140,
-        height: 140,
-        borderRadius: '50%',
-        background: '#e0e7ff',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: '0 2px 8px rgba(45,108,223,0.08)',
-        margin: 16,
-        position: 'relative',
-        cursor: 'pointer',
-        transition: 'box-shadow 0.2s',
-      }}
-    >
-      <div style={{ fontSize: 32, marginBottom: 8 }}>{icon}</div>
-      <div style={{ fontWeight: 700, fontSize: 18, color: '#174ea6' }}>{label}</div>
-      {hovered && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '100%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: '#fff',
-            color: '#174ea6',
-            borderRadius: 12,
-            boxShadow: '0 2px 12px rgba(45,108,223,0.13)',
-            padding: '1rem 1.5rem',
-            marginTop: 12,
-            zIndex: 10,
-            minWidth: 180,
-            textAlign: 'center',
-            fontSize: 15,
-            fontWeight: 500,
-            animation: 'fadeInUp 0.3s',
-          }}
-        >
-          {items.map((item, idx) => (
-            <div key={idx} style={{ margin: '0.2rem 0' }}>{item}</div>
-          ))}
-        </div>
-      )}
+const SkillCard = ({ category, theme }) => (
+  <div style={{
+    background: theme === 'dark' ? '#1e2330' : '#f8faff',
+    border: `1.5px solid ${category.accent}33`,
+    borderRadius: 16,
+    padding: '1.4rem 1.6rem',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 12,
+    boxShadow: theme === 'dark'
+      ? `0 2px 16px rgba(0,0,0,0.3), inset 0 1px 0 ${category.accent}22`
+      : `0 2px 16px rgba(45,108,223,0.07), inset 0 1px 0 ${category.accent}22`,
+    transition: 'transform 0.18s, box-shadow 0.18s',
+  }}
+    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = theme === 'dark' ? `0 8px 28px rgba(0,0,0,0.4), inset 0 1px 0 ${category.accent}33` : `0 8px 28px ${category.accent}28, inset 0 1px 0 ${category.accent}33`; }}
+    onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = theme === 'dark' ? `0 2px 16px rgba(0,0,0,0.3), inset 0 1px 0 ${category.accent}22` : `0 2px 16px rgba(45,108,223,0.07), inset 0 1px 0 ${category.accent}22`; }}
+  >
+    {/* Card header */}
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div style={{
+        width: 40, height: 40, borderRadius: 10,
+        background: `${category.accent}18`,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontSize: 20, flexShrink: 0,
+      }}>
+        {category.icon}
+      </div>
+      <div>
+        <div style={{ fontWeight: 700, fontSize: 16, color: category.accent, lineHeight: 1.2 }}>{category.label}</div>
+        <div style={{ fontSize: 12, color: theme === 'dark' ? '#94a3b8' : '#6b7280', marginTop: 1 }}>{category.description}</div>
+      </div>
     </div>
-  );
-};
+    {/* Divider */}
+    <div style={{ height: 1, background: `${category.accent}22` }} />
+    {/* Tags */}
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
+      {category.items.map((item, idx) => (
+        <SkillTag key={idx} label={item} accent={category.accent} theme={theme} />
+      ))}
+    </div>
+  </div>
+);
 
 const Skills = () => {
   const { theme } = useTheme();
   const sectionRef = useRef();
+
   useEffect(() => {
     if (sectionRef.current) sectionRef.current.classList.add('visible');
   }, []);
+
   return (
-    <section ref={sectionRef} id="skills" className="products-section" style={{ background: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '#222', width: '100vw', minHeight: '100vh', padding: 0, margin: 0 }}>
+    <section
+      ref={sectionRef}
+      id="skills"
+      className="products-section"
+      style={{
+        background: theme === 'dark' ? '#23272f' : '#fff',
+        color: theme === 'dark' ? '#fff' : '#222',
+        width: '100vw',
+        minHeight: '100vh',
+        padding: 0,
+        margin: 0,
+      }}
+    >
       <div className="container">
-        <h2 style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6' }}>Skills</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 32 }}>
-          <SkillCircle label="Coding" items={CODING_LANGUAGES} icon="💻" />
-          <SkillCircle label="Protocol" items={PROTOCOLS} icon="🔗" />
-          <SkillCircle label="Environment" items={ENVIRONMENTS} icon="🌐" />
-          <SkillCircle label="IDE" items={IDES} icon="🖥️" />
-          <SkillCircle label="MCU" items={MCUS} icon="🔌" />
-          <SkillCircle label="MPU" items={MPUS} icon="🧠" />
+        <h2 style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', marginBottom: 6 }}>Skills</h2>
+        <p style={{ color: theme === 'dark' ? '#94a3b8' : '#6b7280', fontSize: 15, marginBottom: 36, marginTop: 0 }}>
+          A snapshot of my technical stack — 8+ years building firmware and embedded systems.
+        </p>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: 20,
+        }}>
+          {SKILL_CATEGORIES.map((cat, idx) => (
+            <SkillCard key={idx} category={cat} theme={theme} />
+          ))}
         </div>
       </div>
     </section>
