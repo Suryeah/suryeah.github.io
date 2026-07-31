@@ -141,7 +141,7 @@ const Navbar = () => {
                   ))}
                   <li style={{ width: '100%' }}>
                     <a
-                      href="/resume.pdf"
+                      href="https://suryeah.github.io/datasheet/Surya.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setMenuOpen(false)}
@@ -217,7 +217,7 @@ const Navbar = () => {
             ))}
             <li style={{ listStyle: 'none' }}>
               <a
-                href="/resume.pdf"
+                href="https://suryeah.github.io/datasheet/Surya.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: navAccent, fontWeight: 700, fontSize: '1.05rem', textDecoration: 'none' }}
