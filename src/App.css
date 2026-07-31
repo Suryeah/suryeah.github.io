@@ -20,6 +20,18 @@ body {
   min-height: 100vh;
 }
 
+:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.28);
+}
+
 body.scroll-lock,
 #root.scroll-lock {
   overflow-y: hidden !important;
@@ -653,6 +665,10 @@ h1, h2, h3, h4 {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(45,108,223,0.2);
 }
+.hero-pill-btn:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+}
 .hero-pill-btn.primary {
   background: linear-gradient(135deg, #2d6cdf, #7c3aed);
   color: #fff;
@@ -727,6 +743,71 @@ h1, h2, h3, h4 {
   margin-top: 10px;
 }
 
+.case-block {
+  font-size: 0.86rem;
+  line-height: 1.58;
+  color: #475569;
+  margin-top: 4px;
+}
+[data-theme="dark"] .case-block {
+  color: #cbd5e1;
+}
+.case-label {
+  font-weight: 700;
+  color: #1d4ed8;
+}
+[data-theme="dark"] .case-label {
+  color: #b3cdf6;
+}
+.case-role-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.case-role-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  color: #2563eb;
+}
+[data-theme="dark"] .case-role-label {
+  color: #93c5fd;
+}
+.case-role-value {
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 3px 10px;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.24);
+  color: #1e40af;
+}
+[data-theme="dark"] .case-role-value {
+  color: #dbeafe;
+  background: rgba(147, 197, 253, 0.16);
+  border-color: rgba(147, 197, 253, 0.3);
+}
+.case-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  background: rgba(2, 132, 199, 0.1);
+  color: #075985;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  margin: 2px;
+}
+[data-theme="dark"] .case-chip {
+  background: rgba(56, 189, 248, 0.12);
+  color: #bae6fd;
+  border-color: rgba(56, 189, 248, 0.22);
+}
+
 /* ══════════════════════════════════════════
    PHASE 5 — Cursor glow
    ══════════════════════════════════════════ */
@@ -739,6 +820,21 @@ h1, h2, h3, h4 {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: left 0.06s linear !important, top 0.06s linear !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .cursor-glow {
+    display: none !important;
+  }
+  section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ══════════════════════════════════════════

@@ -1,12 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import heroPhoto from '../assets/hero-photo.png';
 import { useTheme } from './ThemeContext.jsx';
+import { Link } from 'react-router-dom';
 
 const TITLES = [
-  'Surya Vardhan',
-  'Embedded Developer',
-  'Firmware Engineer',
+  'Embedded Firmware Engineer',
+  'Edge AI Systems Builder',
+  'Real-Time Systems Developer',
 ];
+
+const FEATURED_PROJECT = {
+  title: 'Wireless Embedded DAQ Platform',
+  detail: 'Designed a low-latency AD7771 data path sampled at 8 KSPS and streamed over TCP using Teensy 3.6 + ESP32.',
+  stack: ['Teensy 3.6', 'ESP32', 'AD7771', 'TCP Socket'],
+  github: 'https://github.com/Suryeah/AD7771-Teensy3.6-ESP32-.git',
+};
 
 const TYPING_SPEED = 120;
 const DELETING_SPEED = 60;
@@ -134,8 +142,8 @@ const Hero = () => {
               borderRadius: '20px',
               objectFit: 'cover',
               boxShadow: theme === 'dark'
-                ? '0 0 0 4px rgba(124,58,237,0.35), 0 0 48px rgba(124,58,237,0.2), 0 16px 48px rgba(0,0,0,0.4)'
-                : '0 0 0 4px rgba(45,108,223,0.18), 0 0 48px rgba(45,108,223,0.12), 0 16px 48px rgba(45,108,223,0.1)',
+                ? '0 16px 48px rgba(0,0,0,0.4)'
+                : '0 16px 40px rgba(15,23,42,0.16)',
               border: 'none',
               minWidth: 'min(220px, 40vw)', minHeight: 'min(220px, 40vw)',
               maxWidth: '440px', maxHeight: '440px',
@@ -152,16 +160,58 @@ const Hero = () => {
           paddingLeft: '2vw', marginLeft: '20px',
         }}>
 
-          {/* Typewriter heading with gradient text */}
-          <h1 style={{
-            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
-            minHeight: '2.5rem', fontWeight: 800,
-            letterSpacing: '-0.5px', textAlign: 'left',
-            marginBottom: '1rem', lineHeight: 1.1, wordBreak: 'break-word',
-            width: `calc(${maxTitleLength}ch + 1.5rem)`,
-            minWidth: `calc(${maxTitleLength}ch + 1.5rem)`,
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            marginBottom: '0.8rem',
+            padding: '0.35rem 0.8rem',
+            borderRadius: 999,
+            fontSize: '0.75rem',
+            fontWeight: 700,
+            letterSpacing: '0.5px',
+            textTransform: 'uppercase',
+            color: theme === 'dark' ? '#9ee7b5' : '#166534',
+            background: theme === 'dark' ? 'rgba(34,197,94,0.14)' : 'rgba(34,197,94,0.12)',
+            border: theme === 'dark' ? '1px solid rgba(34,197,94,0.35)' : '1px solid rgba(22,101,52,0.25)',
           }}>
-            <span className="hero-gradient-text">{displayText}</span>
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 0 4px rgba(34,197,94,0.2)' }} />
+            Currently at Robert Bosch Engineering
+          </div>
+
+          <h1 style={{
+            fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
+            minHeight: '2.5rem', fontWeight: 800,
+            letterSpacing: '-0.7px', textAlign: 'left',
+            marginBottom: '0.35rem', lineHeight: 1.08, wordBreak: 'break-word',
+          }}>
+            <span className="hero-gradient-text">Surya Vardhan</span>
+          </h1>
+
+          <p style={{
+            margin: 0,
+            marginBottom: '0.85rem',
+            color: theme === 'dark' ? '#e2e8f0' : '#334155',
+            fontWeight: 600,
+            fontSize: '1.05rem',
+          }}>
+            Building reliable embedded products from firmware to field deployment.
+          </p>
+
+          <h2 style={{
+            fontSize: 'clamp(1.1rem, 2.2vw, 1.35rem)',
+            minHeight: '1.5rem',
+            fontWeight: 700,
+            letterSpacing: '0.2px',
+            textAlign: 'left',
+            marginTop: 0,
+            marginBottom: '1rem',
+            lineHeight: 1.25,
+            width: `calc(${maxTitleLength}ch + 1.2rem)`,
+            minWidth: `calc(${maxTitleLength}ch + 1.2rem)`,
+            color: theme === 'dark' ? '#b3cdf6' : '#1e3a8a',
+          }}>
+            <span>{displayText}</span>
             <span style={{
               background: 'linear-gradient(135deg, #2d6cdf, #7c3aed)',
               WebkitBackgroundClip: 'text',
@@ -169,15 +219,15 @@ const Hero = () => {
               backgroundClip: 'text',
               fontWeight: 300,
             }}>|</span>
-          </h1>
+          </h2>
 
           {/* Bio */}
           <p style={{
             color: theme === 'dark' ? '#cbd5e1' : '#4b5563',
-            fontSize: '1rem', lineHeight: 1.75, margin: 0,
+            fontSize: '0.98rem', lineHeight: 1.72, margin: 0,
             textAlign: 'justify', maxWidth: '520px',
           }}>
-            🔧 A never-stopping individual who loves bringing hardware to life with lines of code. Passionate about real-time systems, low-level debugging, and building tech that makes a difference. Whether it's writing firmware or exploring side projects in web dev, I'm always chasing the next challenge (and that perfect compile).
+            I design embedded software for real-world systems across automotive, industrial, and sensing use cases. My work centers on low-level firmware, board bring-up, protocol stacks, and edge intelligence where reliability, timing, and hardware constraints are non-negotiable.
           </p>
 
           {/* Stats strip */}
@@ -187,8 +237,69 @@ const Hero = () => {
             {STATS.map((s, i) => <StatItem key={i} stat={s} started={statsStarted} />)}
           </div>
 
+          <div style={{
+            width: '100%',
+            borderRadius: 14,
+            padding: '0.95rem 1rem',
+            marginBottom: '0.55rem',
+            background: theme === 'dark' ? 'rgba(30,41,59,0.72)' : 'rgba(248,250,255,0.95)',
+            border: theme === 'dark' ? '1px solid rgba(179,205,246,0.18)' : '1px solid rgba(45,108,223,0.14)',
+            boxShadow: theme === 'dark' ? '0 8px 28px rgba(0,0,0,0.24)' : '0 8px 24px rgba(45,108,223,0.08)',
+          }}>
+            <div style={{
+              fontSize: '0.72rem',
+              fontWeight: 800,
+              letterSpacing: '0.8px',
+              textTransform: 'uppercase',
+              color: theme === 'dark' ? '#93c5fd' : '#1d4ed8',
+              marginBottom: '0.45rem',
+            }}>
+              Flagship Build
+            </div>
+            <div style={{
+              fontSize: '1rem',
+              fontWeight: 700,
+              color: theme === 'dark' ? '#e2e8f0' : '#0f172a',
+              marginBottom: '0.3rem',
+            }}>
+              {FEATURED_PROJECT.title}
+            </div>
+            <div style={{
+              fontSize: '0.88rem',
+              lineHeight: 1.6,
+              color: theme === 'dark' ? '#cbd5e1' : '#475569',
+              marginBottom: '0.55rem',
+            }}>
+              {FEATURED_PROJECT.detail}
+            </div>
+            <div className="tech-tags-row" style={{ marginTop: 0, marginBottom: '0.45rem' }}>
+              {FEATURED_PROJECT.stack.map((item, idx) => (
+                <span key={idx} className="tech-tag">{item}</span>
+              ))}
+            </div>
+            <a
+              href={FEATURED_PROJECT.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontSize: '0.85rem',
+                fontWeight: 700,
+                color: theme === 'dark' ? '#b3cdf6' : '#1d4ed8',
+                textDecoration: 'none',
+              }}
+            >
+              View source on GitHub →
+            </a>
+          </div>
+
           {/* CTA pill buttons */}
           <div className="hero-cta-row">
+            <Link to="/projects" className="hero-pill-btn primary" aria-label="View projects">
+              View Projects
+            </Link>
+            <Link to="/catchme" className="hero-pill-btn secondary" aria-label="Go to contact page">
+              Contact Me
+            </Link>
             <a href="https://www.linkedin.com/in/surya1412" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               LinkedIn
@@ -241,7 +352,8 @@ const Hero = () => {
         }
         section { margin:0!important; padding:0!important; border:none!important; border-radius:0!important; }
         section + section { margin-top:0!important; padding-top:0!important; border:none!important; border-radius:0!important; }
-        .hero-content p, .hero-content h1 { text-align:justify; }
+        .hero-content p { text-align:justify; }
+        .hero-content h1, .hero-content h2 { text-align:left; }
       `}</style>
     </section>
   );

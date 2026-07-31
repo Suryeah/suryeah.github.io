@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from './ThemeContext.jsx';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function useIsSmallScreen(breakpoint = 900) {
   const [isSmall, setIsSmall] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= breakpoint : false);
@@ -54,11 +54,10 @@ const CONTACT_LINKS = [
 
 const Contact = () => {
   const { theme } = useTheme();
-  const location = useLocation();
   const isSmallScreen = useIsSmallScreen(900); // Show breadcrumbs if screen <= 900px
   const breadcrumbs = [
     { label: 'Home', to: '/' },
-    { label: 'Catch Me', to: '/catch-me' },
+    { label: 'Catch Me', to: '/catchme' },
   ];
   const sectionRef = useRef();
   useEffect(() => {
@@ -125,13 +124,36 @@ const Contact = () => {
               color: theme === 'dark' ? '#b3cdf6' : '#174ea6',
               textAlign: 'center',
               fontSize: '2rem',
-              marginBottom: '1.5rem',
+              marginBottom: '0.75rem',
             }}
           >
             Get in Touch
           </h2>
+          <p style={{
+            marginTop: 0,
+            marginBottom: '1rem',
+            color: theme === 'dark' ? '#cbd5e1' : '#475569',
+            fontSize: '0.95rem',
+            lineHeight: 1.6,
+            textAlign: 'center',
+          }}>
+            Open to embedded firmware roles, edge-AI collaborations, and engineering consulting discussions.
+          </p>
+          <div style={{
+            width: '100%',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 8,
+            justifyContent: 'center',
+            marginBottom: '1rem',
+          }}>
+            <a href="mailto:surya_24@live.com?subject=Hiring%20Discussion" className="hero-pill-btn secondary">Hiring Discussion</a>
+            <a href="mailto:surya_24@live.com?subject=Collaboration%20Request" className="hero-pill-btn secondary">Collaboration</a>
+            <a href="mailto:surya_24@live.com?subject=Research%20Query" className="hero-pill-btn secondary">Research Query</a>
+          </div>
           <form
             className="contact-form"
+            onSubmit={(e) => e.preventDefault()}
             style={{
               width: '100%',
               display: 'flex',
@@ -166,6 +188,14 @@ const Contact = () => {
               required
               style={{ width: '100%', minHeight: 120, resize: 'vertical' }}
             ></textarea>
+            <p style={{
+              margin: '-0.35rem 0 0 0',
+              fontSize: '0.82rem',
+              color: theme === 'dark' ? '#94a3b8' : '#64748b',
+              textAlign: 'left',
+            }}>
+              Typical response time: within 24-48 hours.
+            </p>
             <button
               type="submit"
               style={{
@@ -182,7 +212,7 @@ const Contact = () => {
                 transition: 'background 0.2s',
               }}
             >
-              Send Message
+              Send Message Request
             </button>
           </form>
           <div
