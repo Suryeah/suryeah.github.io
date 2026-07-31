@@ -204,7 +204,7 @@ const Navbar = () => {
             `}</style>
           </div>
         ) : (
-          <ul className="nav-links" style={{ display: 'flex', gap: '1.2rem', margin: 0, padding: 0, listStyle: 'none', alignItems: 'center', marginLeft: 'auto' }}>
+          <ul className="nav-links" style={{ display: 'flex', gap: '0.9rem', margin: 0, padding: '0 10px', listStyle: 'none', alignItems: 'center', width: '100%', justifyContent: 'space-evenly' }}>
             {navLinks.map((link) => (
               <li key={link.to} style={{ listStyle: 'none' }}>
                 <span
