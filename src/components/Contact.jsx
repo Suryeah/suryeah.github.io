@@ -152,7 +152,7 @@ const Contact = () => {
             justifyContent: 'center',
             marginBottom: '1rem',
           }}>
-            <a href="/src/assets/surya%20resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">Download Resume</a>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">Download Resume</a>
             <a href="mailto:surya_24@live.com?subject=Hiring%20Discussion" className="hero-pill-btn secondary">Hiring Discussion</a>
             <a href="mailto:surya_24@live.com?subject=Collaboration%20Request" className="hero-pill-btn secondary">Collaboration</a>
             <a href="mailto:surya_24@live.com?subject=Research%20Query" className="hero-pill-btn secondary">Research Query</a>

@@ -327,7 +327,7 @@ const Hero = () => {
             <Link to="/catchme" className="hero-pill-btn secondary" aria-label="Go to contact page">
               Contact Me
             </Link>
-            <a href="/src/assets/surya%20resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">
               Resume
             </a>
             <a href="https://www.linkedin.com/in/surya1412" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">
