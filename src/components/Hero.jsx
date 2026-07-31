@@ -188,34 +188,32 @@ const Hero = () => {
             fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
             minHeight: '2.5rem', fontWeight: 800,
             letterSpacing: '-0.7px', textAlign: 'left',
-            marginBottom: '0.55rem', lineHeight: 1.08, wordBreak: 'break-word',
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'baseline',
-            gap: '0.45rem',
+            marginBottom: '0.35rem', lineHeight: 1.08, wordBreak: 'break-word',
           }}>
             <span className="hero-gradient-text">Surya Vardhan</span>
-            <span style={{
-              fontSize: 'clamp(1.05rem, 2.1vw, 1.28rem)',
-              fontWeight: 700,
-              color: theme === 'dark' ? '#b3cdf6' : '#1e3a8a',
-              letterSpacing: '0.2px',
-              whiteSpace: 'normal',
-              display: 'inline-flex',
-              alignItems: 'baseline',
-              maxWidth: '100%',
-              verticalAlign: 'middle',
-            }}>
-              {displayText}
-              <span style={{
-                background: 'linear-gradient(135deg, #2d6cdf, #7c3aed)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                fontWeight: 300,
-              }}>|</span>
-            </span>
           </h1>
+
+          <div style={{
+            fontSize: 'clamp(1.05rem, 2.1vw, 1.28rem)',
+            minHeight: '1.6rem',
+            fontWeight: 700,
+            color: theme === 'dark' ? '#b3cdf6' : '#1e3a8a',
+            letterSpacing: '0.2px',
+            marginTop: 0,
+            marginBottom: '1rem',
+            lineHeight: 1.25,
+            textAlign: 'left',
+            whiteSpace: 'nowrap',
+          }}>
+            {displayText}
+            <span style={{
+              background: 'linear-gradient(135deg, #2d6cdf, #7c3aed)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontWeight: 300,
+            }}>|</span>
+          </div>
 
           <p style={{
             margin: 0,
