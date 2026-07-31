@@ -9,35 +9,41 @@ const experiences = [
     title: 'Senior Software Engineer',
     period: 'Dec 2023 - Present',
     location: 'Bangalore Urban, Karnataka, India',
-    summary: 'Developing software for home appliances as part of a global team.'
+    summary: 'Developing software for home appliances as part of a global team.',
+    current: true,
+    dotColor: '#ef4444',
   },
   {
     company: 'Mistral Solutions Pvt. Ltd',
     title: 'Senior Software Developer',
     period: 'Apr 2022 - Dec 2023',
     location: 'Bengaluru, Karnataka, India',
-    summary: 'Led SDLC for embedded Linux projects, device driver development, automation test farm integration, and technical recruitment. Improved release efficiency and code reusability.'
+    summary: 'Led SDLC for embedded Linux projects, device driver development, automation test farm integration, and technical recruitment. Improved release efficiency and code reusability.',
+    dotColor: '#f97316',
   },
   {
     company: 'NASH Industries (I) Pvt. Ltd.',
     title: 'Embedded Engineer',
     period: 'Jul 2021 - Feb 2022',
     location: 'Bengaluru, Karnataka, India',
-    summary: 'Led a team for EV charger firmware, managed consumer electronics projects, and authored technical documentation. Recognized for rapid project delivery.'
+    summary: 'Led a team for EV charger firmware, managed consumer electronics projects, and authored technical documentation. Recognized for rapid project delivery.',
+    dotColor: '#eab308',
   },
   {
     company: 'Senpronics',
     title: 'Embedded Engineer',
     period: 'Oct 2019 - Jul 2021',
     location: 'Bengaluru, Karnataka, India',
-    summary: 'Developed RTOS-based safety and IoT products, improved performance and reliability, and contributed to mission-critical defense projects.'
+    summary: 'Developed RTOS-based safety and IoT products, improved performance and reliability, and contributed to mission-critical defense projects.',
+    dotColor: '#22c55e',
   },
   {
     company: 'Tech Mahindra Pvt. Ltd.',
     title: 'Tech Support Engineer',
     period: 'Nov 2017 - Jan 2019',
     location: 'Chennai Area, India',
-    summary: 'Resolved 1600+ network issues, specializing in OSI Layer troubleshooting and rapid root cause analysis.'
+    summary: 'Resolved 1600+ network issues, specializing in OSI Layer troubleshooting and rapid root cause analysis.',
+    dotColor: '#6366f1',
   },
 ];
 
@@ -47,14 +53,16 @@ const internships = [
     title: 'Project Student',
     period: 'December 2016 - March 2017 (4 months)',
     location: 'Chennai, Tamil Nadu, India',
-    summary: 'Designed and developed working prototype of Regenerative Braking System for Mark-4 Main Battle Tank. Reported to scientists in robotics department of CVRDE.'
+    summary: 'Designed and developed working prototype of Regenerative Braking System for Mark-4 Main Battle Tank. Reported to scientists in robotics department of CVRDE.',
+    dotColor: '#0ea5e9',
   },
   {
     company: 'Robert Bosch',
     title: 'Embedded Intern',
     period: 'May 2017 - Jul 2017',
     location: 'Bangalore Urban, Karnataka, India',
-    summary: 'Worked on embedded C projects and automation scripts for test benches.'
+    summary: 'Worked on embedded C projects and automation scripts for test benches.',
+    dotColor: '#ef4444',
   },
 ];
 
@@ -139,12 +147,12 @@ const TimelineItem = ({ exp, isLast, theme, index, total }) => (
         width: 32,
         height: 32,
         borderRadius: '50%',
-        background: theme === 'dark' ? '#23272f' : '#fff',
-        border: `2.5px solid ${theme === 'dark' ? '#2d6cdf' : '#174ea6'}`,
+        background: exp.dotColor || (theme === 'dark' ? '#2d6cdf' : '#174ea6'),
+        border: `2.5px solid ${exp.dotColor || (theme === 'dark' ? '#2d6cdf' : '#174ea6')}`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: theme === 'dark' ? '0 0 0 2px #23272f' : '0 0 0 2px #fff',
+        boxShadow: exp.dotColor ? `0 0 0 3px ${exp.dotColor}33` : (theme === 'dark' ? '0 0 0 2px #23272f' : '0 0 0 2px #fff'),
         transition: 'background 0.3s, border 0.3s',
         position: 'relative',
         zIndex: 2,
@@ -182,7 +190,10 @@ const TimelineItem = ({ exp, isLast, theme, index, total }) => (
     </div>
     {/* Details on the right */}
     <div style={{ flex: 1, marginLeft: 8, paddingBottom: isLast ? 0 : 24, alignSelf: 'flex-start' }}>
-      <div style={{ fontWeight: 700, fontSize: '1.1rem', color: theme === 'dark' ? '#fff' : '#174ea6' }}>{exp.title}</div>
+      <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 4 }}>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: theme === 'dark' ? '#fff' : '#174ea6' }}>{exp.title}</span>
+        {exp.current && <span className="badge-current">● Current</span>}
+      </div>
       <div style={{ fontWeight: 500, fontSize: '1rem', margin: '2px 0 2px 0', color: theme === 'dark' ? '#b3cdf6' : '#222' }}>{exp.period}</div>
       <div style={{ fontSize: '0.97rem', color: theme === 'dark' ? '#b3cdf6' : '#555', marginBottom: 2 }}>{exp.location}</div>
       <div style={{ fontSize: '0.98rem', color: theme === 'dark' ? '#e0e6f1' : '#333', marginBottom: 0 }}>{exp.summary}</div>

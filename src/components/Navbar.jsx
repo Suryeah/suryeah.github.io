@@ -1,18 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from './ThemeContext.jsx';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const menuRef = useRef();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 900);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -36,11 +44,15 @@ const Navbar = () => {
     { label: 'Catch Me', to: '/catchme' },
   ];
 
+  const navBg = scrolled
+    ? theme === 'dark' ? 'rgba(35,39,47,0.85)' : 'rgba(255,255,255,0.85)'
+    : theme === 'dark' ? '#23272f' : '#fff';
+
   return (
-    <nav className="navbar" style={{ background: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '#222' }}>
+    <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`} style={{ background: navBg, color: theme === 'dark' ? '#fff' : '#222' }}>
       <div className="container" style={{
         width: '100%',
-        maxWidth: '1200px', // Add maxWidth to prevent overflow
+        maxWidth: '1200px',
         margin: '0 auto',
         display: 'flex',
         alignItems: 'center',
@@ -49,9 +61,9 @@ const Navbar = () => {
         position: 'relative',
         padding: 0,
         boxSizing: 'border-box',
-        overflowX: 'hidden', // Prevent horizontal scroll
+        overflowX: 'hidden',
       }}>
-        <span className="logo" style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', cursor: 'pointer', flex: '0 0 auto', marginRight: isMobile ? 0 : 24, fontSize: 24, height: 48, display: 'flex', alignItems: 'center' }} onClick={() => navigate('/')}>Surya</span>
+        <span className="logo" style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', cursor: 'pointer', flex: '0 0 auto', marginRight: isMobile ? 0 : 24, fontSize: 24, height: 48, display: 'flex', alignItems: 'center', fontFamily: "'Sora', 'Inter', system-ui", fontWeight: 800 }} onClick={() => navigate('/')}>Surya</span>
         {isMobile ? (
           <div ref={menuRef} style={{ position: 'relative', marginLeft: 'auto' }}>
             <button
