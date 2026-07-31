@@ -188,17 +188,21 @@ const Hero = () => {
             minHeight: '2.5rem', fontWeight: 800,
             letterSpacing: '-0.7px', textAlign: 'left',
             marginBottom: '0.55rem', lineHeight: 1.08, wordBreak: 'break-word',
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'baseline',
+            gap: '0.45rem',
           }}>
             <span className="hero-gradient-text">Surya Vardhan</span>
             <span style={{
               fontSize: 'clamp(1.05rem, 2.1vw, 1.28rem)',
               fontWeight: 700,
-              marginLeft: '0.55rem',
               color: theme === 'dark' ? '#b3cdf6' : '#1e3a8a',
               letterSpacing: '0.2px',
-              whiteSpace: 'nowrap',
-              display: 'inline-block',
-              minWidth: `calc(${maxTitleLength}ch + 1.2rem)`,
+              whiteSpace: 'normal',
+              display: 'inline-flex',
+              alignItems: 'baseline',
+              maxWidth: '100%',
               verticalAlign: 'middle',
             }}>
               {displayText}

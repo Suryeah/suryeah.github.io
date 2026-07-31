@@ -5,14 +5,14 @@ import { useTheme } from './ThemeContext.jsx';
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const menuRef = useRef();
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 900);
+    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -58,15 +58,15 @@ const Navbar = () => {
         margin: '0 auto',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: 48,
+        justifyContent: isMobile ? 'space-between' : 'center',
+        minHeight: isMobile ? 56 : 48,
         position: 'relative',
-        padding: 0,
+        padding: isMobile ? '0 12px' : 0,
         boxSizing: 'border-box',
         overflowX: 'hidden',
       }}>
         {isMobile ? (
-          <div ref={menuRef} style={{ position: 'relative', marginLeft: 'auto' }}>
+          <div ref={menuRef} style={{ position: 'relative', marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
             <button
               aria-label="Open navigation menu"
               onClick={() => setMenuOpen((v) => !v)}
