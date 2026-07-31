@@ -31,7 +31,6 @@ const STATS = [
 const HIGHLIGHTS = [
   'Delivered 4 commercial products from concept to market.',
   'Reduced development cycle time by 35% through structured firmware delivery.',
-  'Accelerated Linux test-farm integration by 25% on Jacinto platforms.',
   'Improved project velocity and product outcomes by up to 30% on key programs.',
 ];
 
