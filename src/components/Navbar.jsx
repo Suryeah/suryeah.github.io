@@ -41,12 +41,14 @@ const Navbar = () => {
     { label: 'Projects', to: '/projects' },
     { label: 'Education', to: '/education' },
     { label: 'Experience', to: '/experience' },
-    { label: 'Catch Me', to: '/catchme' },
+    { label: 'Build Real Stuff', to: '/catchme' },
   ];
 
   const navBg = scrolled
     ? theme === 'dark' ? 'rgba(35,39,47,0.85)' : 'rgba(255,255,255,0.85)'
     : theme === 'dark' ? '#23272f' : '#fff';
+  const navText = theme === 'dark' ? '#e2e8f0' : '#1f2937';
+  const navAccent = theme === 'dark' ? '#93c5fd' : '#174ea6';
 
   return (
     <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`} style={{ background: navBg, color: theme === 'dark' ? '#fff' : '#222' }}>
@@ -56,14 +58,13 @@ const Navbar = () => {
         margin: '0 auto',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         minHeight: 48,
         position: 'relative',
         padding: 0,
         boxSizing: 'border-box',
         overflowX: 'hidden',
       }}>
-        <span className="logo" style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', cursor: 'pointer', flex: '0 0 auto', marginRight: isMobile ? 0 : 24, fontSize: 24, height: 48, display: 'flex', alignItems: 'center', fontFamily: "'Sora', 'Inter', system-ui", fontWeight: 800 }} onClick={() => navigate('/')}>Surya</span>
         {isMobile ? (
           <div ref={menuRef} style={{ position: 'relative', marginLeft: 'auto' }}>
             <button
@@ -73,7 +74,7 @@ const Navbar = () => {
                 background: 'none',
                 border: 'none',
                 fontSize: 28,
-                color: theme === 'dark' ? '#b3cdf6' : '#174ea6',
+                color: navAccent,
                 cursor: 'pointer',
                 padding: 8,
                 marginLeft: 8,
@@ -81,7 +82,7 @@ const Navbar = () => {
               }}
             >
               <span style={{ display: 'inline-block', width: 28, height: 28 }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={theme === 'dark' ? '#b3cdf6' : '#174ea6'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={navAccent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
               </span>
             </button>
             {menuOpen && (
@@ -107,7 +108,7 @@ const Navbar = () => {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: theme === 'dark' ? '#b3cdf6' : '#174ea6',
+                    color: navAccent,
                     fontSize: 32,
                     position: 'absolute',
                     top: 18,
@@ -131,7 +132,7 @@ const Navbar = () => {
                   {navLinks.map((link) => (
                     <li key={link.to} style={{ width: '100%' }}>
                       <span
-                        style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer', display: 'block', padding: '0.5rem 0' }}
+                        style={{ color: navText, fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer', display: 'block', padding: '0.5rem 0' }}
                         onClick={() => { setMenuOpen(false); navigate(link.to); }}
                       >
                         {link.label}
@@ -142,16 +143,16 @@ const Navbar = () => {
                     <button
                       aria-label="Toggle theme"
                       onClick={toggleTheme}
-                      style={{ background: 'none', border: 'none', color: theme === 'dark' ? '#b3cdf6' : '#174ea6', fontSize: 22, cursor: 'pointer', padding: 0, outline: 'none', boxShadow: 'none' }}
+                      style={{ background: 'none', border: 'none', color: navAccent, fontSize: 22, cursor: 'pointer', padding: 0, outline: 'none', boxShadow: 'none' }}
                     >
                       {theme === 'dark' ? (
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b3cdf6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={navAccent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
                           <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z" fill="#23272f"/>
                         </svg>
                       ) : (
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#174ea6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={navAccent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
                           <circle cx="12" cy="12" r="5" fill="#f6f8fa"/>
-                          <g stroke="#174ea6">
+                          <g stroke={navAccent}>
                             <line x1="12" y1="1" x2="12" y2="3" />
                             <line x1="12" y1="21" x2="12" y2="23" />
                             <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
@@ -196,7 +197,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <li key={link.to} style={{ listStyle: 'none' }}>
                 <span
-                  style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer' }}
+                  style={{ color: navText, fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer' }}
                   onClick={() => navigate(link.to)}
                 >
                   {link.label}
@@ -207,16 +208,16 @@ const Navbar = () => {
               <button
                 aria-label="Toggle theme"
                 onClick={toggleTheme}
-                style={{ background: 'none', border: 'none', color: theme === 'dark' ? '#b3cdf6' : '#174ea6', fontSize: 22, cursor: 'pointer', padding: 0, outline: 'none', boxShadow: 'none' }}
+                style={{ background: 'none', border: 'none', color: navAccent, fontSize: 22, cursor: 'pointer', padding: 0, outline: 'none', boxShadow: 'none' }}
               >
                 {theme === 'dark' ? (
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b3cdf6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={navAccent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
                     <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z" fill="#23272f"/>
                   </svg>
                 ) : (
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#174ea6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={navAccent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
                     <circle cx="12" cy="12" r="5" fill="#f6f8fa"/>
-                    <g stroke="#174ea6">
+                    <g stroke={navAccent}>
                       <line x1="12" y1="1" x2="12" y2="3" />
                       <line x1="12" y1="21" x2="12" y2="23" />
                       <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />

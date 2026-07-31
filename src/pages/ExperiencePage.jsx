@@ -9,13 +9,13 @@ const experiences = [
     title: 'Senior Software Engineer',
     period: 'Dec 2023 - Present',
     location: 'Bangalore Urban, Karnataka, India',
-    summary: 'Developing software for home appliances as part of a global team.',
+    summary: 'Developing next-gen Bosch home appliance electronics with Embedded Linux and Python application stacks.',
     achievements: [
-      'Delivered firmware features for global appliance platforms with cross-team coordination.',
-      'Strengthened quality through reproducible debugging and structured release validation.',
-      'Contributed to reusable software blocks that improved maintainability across variants.',
+      'Built Python applications for Embedded Linux platforms, including DBus IPC between multiple applications.',
+      'Developed battery monitoring logic for SOC and SOH estimation in appliance-class systems.',
+      'Improved release confidence with structured unit testing using pytest and reproducible validation flows.',
     ],
-    focus: ['Embedded C', 'System Integration', 'Release Reliability'],
+    focus: ['Embedded Linux', 'Python', 'DBus', 'Pytest'],
     current: true,
     dotColor: '#ef4444',
   },
@@ -24,13 +24,13 @@ const experiences = [
     title: 'Senior Software Developer',
     period: 'Apr 2022 - Dec 2023',
     location: 'Bengaluru, Karnataka, India',
-    summary: 'Led SDLC for embedded Linux projects, device driver development, automation test farm integration, and technical recruitment. Improved release efficiency and code reusability.',
+    summary: 'Owned end-to-end SDLC delivery across embedded Linux and TI Sitara/Jacinto programs with device-driver and platform integration work.',
     achievements: [
-      'Led end-to-end SDLC for embedded Linux programs from bring-up to release.',
-      'Integrated automation test farm workflows that reduced repetitive manual verification.',
-      'Improved code reuse across projects by promoting modular driver and middleware patterns.',
+      'Ported MMCSD device driver for TI AM263x in 3 months and met AM68/AM69 SDK delivery milestones.',
+      'Accelerated Linux test farm integration by 25% for Jacinto processor-based boards.',
+      'Built board-specific Linux boot binaries and device-tree bring-up flows; recognized with Pride Pack award.',
     ],
-    focus: ['Embedded Linux', 'Device Drivers', 'Automation'],
+    focus: ['AM263/AM68/AM69', 'Linux Drivers', 'Device Tree', 'Automation'],
     dotColor: '#f97316',
   },
   {
@@ -38,13 +38,13 @@ const experiences = [
     title: 'Embedded Engineer',
     period: 'Jul 2021 - Feb 2022',
     location: 'Bengaluru, Karnataka, India',
-    summary: 'Led a team for EV charger firmware, managed consumer electronics projects, and authored technical documentation. Recognized for rapid project delivery.',
+    summary: 'Led firmware and integration for EV charging and consumer electronics, balancing speed with production-grade execution.',
     achievements: [
-      'Owned EV charger firmware stream and coordinated delivery with hardware and system teams.',
-      'Balanced rapid delivery with product stability through disciplined review and testing loops.',
-      'Authored technical documentation used for smoother handover and support continuity.',
+      'Led a team of 4+ peers for hardware-software integration and delivery of EV on-board charger solutions.',
+      'Developed firmware for a 3.3kW charging station on 32-bit MCUs using IAR and STM32CubeIDE.',
+      'Delivered an RTOS-based product from concept to commercialization within 4 months.',
     ],
-    focus: ['EV Charging', 'Firmware Delivery', 'Technical Documentation'],
+    focus: ['EV Charging', 'STM32', 'RTOS', 'Team Leadership'],
     dotColor: '#eab308',
   },
   {
@@ -52,13 +52,13 @@ const experiences = [
     title: 'Embedded Engineer',
     period: 'Oct 2019 - Jul 2021',
     location: 'Bengaluru, Karnataka, India',
-    summary: 'Developed RTOS-based safety and IoT products, improved performance and reliability, and contributed to mission-critical defense projects.',
+    summary: 'Delivered RTOS-based firmware for mission-critical safety, RF, and IoT products with strong field reliability outcomes.',
     achievements: [
-      'Built RTOS-based firmware for safety and IoT products under strict reliability constraints.',
-      'Improved runtime behavior through targeted performance profiling and optimization.',
-      'Contributed to mission-critical defense-oriented embedded deliverables.',
+      'Developed MISRA-compliant RTOS firmware for security and defense-oriented embedded systems.',
+      'Improved product performance by 10% and firmware response by 20% through optimization and profiling.',
+      'Contributed to mission-critical defense products and helped drive a 30% increase in revenue/orders.',
     ],
-    focus: ['RTOS', 'Safety Systems', 'IoT Firmware'],
+    focus: ['MISRA C', 'FreeRTOS', 'IoT Firmware', 'Defense Systems'],
     dotColor: '#22c55e',
   },
   {
@@ -104,6 +104,28 @@ const internships = [
     focus: ['Embedded C', 'Test Automation'],
     dotColor: '#ef4444',
   },
+];
+
+const showcase = [
+  {
+    title: 'Pride Pack - Outstanding Performance',
+    detail: 'Recognized at Mistral Solutions for excellent teamwork and schedule-critical AM68/AM69 SK SDK release delivery.',
+    kind: 'Award',
+  },
+  {
+    title: 'Automated Security System and Method for Motor Bike Locking',
+    detail: 'Patent Application: 20164103054 | Classification: G08B21/00',
+    kind: 'Patent',
+  },
+];
+
+const languageSkills = [
+  'English (Fluent)',
+  'Hindi (Fluent)',
+  'Tamil (Native)',
+  'Kannada (Conversational)',
+  'Telugu (Conversational)',
+  'German (A1)',
 ];
 
 const companyIcons = {
@@ -300,6 +322,37 @@ const ExperiencePage = () => {
           {(activeTab === 'job' ? experiences : internships).map((exp, i, arr) => (
             <TimelineItem key={exp.company + exp.period} exp={exp} isLast={i === arr.length - 1} theme={theme} index={i} total={arr.length} />
           ))}
+        </div>
+
+        <div style={{
+          marginTop: 26,
+          padding: '1rem',
+          borderRadius: 14,
+          border: theme === 'dark' ? '1px solid rgba(147,197,253,0.22)' : '1px solid rgba(23,78,166,0.18)',
+          background: theme === 'dark' ? 'rgba(30,41,59,0.45)' : 'rgba(248,250,255,0.8)',
+        }}>
+          <h3 style={{ marginTop: 0, marginBottom: 10, color: theme === 'dark' ? '#bfdbfe' : '#1d4ed8' }}>Awards & IP</h3>
+          {showcase.map((item, idx) => (
+            <div key={idx} style={{ marginBottom: idx === showcase.length - 1 ? 0 : 10 }}>
+              <div style={{ fontWeight: 700, color: theme === 'dark' ? '#e2e8f0' : '#0f172a' }}>
+                {item.title} <span style={{ fontWeight: 600, color: theme === 'dark' ? '#93c5fd' : '#2563eb' }}>({item.kind})</span>
+              </div>
+              <div style={{ fontSize: '0.92rem', color: theme === 'dark' ? '#cbd5e1' : '#475569' }}>{item.detail}</div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{
+          marginTop: 16,
+          padding: '1rem',
+          borderRadius: 14,
+          border: theme === 'dark' ? '1px solid rgba(148,163,184,0.25)' : '1px solid rgba(148,163,184,0.28)',
+          background: theme === 'dark' ? 'rgba(15,23,42,0.42)' : 'rgba(241,245,249,0.72)',
+        }}>
+          <h3 style={{ marginTop: 0, marginBottom: 10, color: theme === 'dark' ? '#bfdbfe' : '#1d4ed8' }}>Languages</h3>
+          <div className="tech-tags-row" style={{ marginTop: 0 }}>
+            {languageSkills.map((lang, idx) => <span key={idx} className="tech-tag">{lang}</span>)}
+          </div>
         </div>
       </div>
     </section>

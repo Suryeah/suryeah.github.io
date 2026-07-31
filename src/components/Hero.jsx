@@ -22,10 +22,17 @@ const DELAY_AFTER_TYPE = 1000;
 const DELAY_AFTER_DELETE = 400;
 
 const STATS = [
-  { end: 8, suffix: '+', label: 'Years Exp.' },
-  { end: 5, suffix: '', label: 'Companies' },
-  { end: 7, suffix: '+', label: 'MCU Platforms' },
-  { end: 9, suffix: '+', label: 'Projects' },
+  { end: 5, suffix: '+', label: 'Years Exp.' },
+  { end: 4, suffix: '', label: 'Products Shipped' },
+  { end: 35, suffix: '%', label: 'Faster Delivery' },
+  { end: 1600, suffix: '+', label: 'Issues Resolved' },
+];
+
+const HIGHLIGHTS = [
+  'Delivered 4 commercial products from concept to market.',
+  'Reduced development cycle time by 35% through structured firmware delivery.',
+  'Accelerated Linux test-farm integration by 25% on Jacinto platforms.',
+  'Improved project velocity and product outcomes by up to 30% on key programs.',
 ];
 
 function useCountUp(target, duration = 1200, start = false) {
@@ -141,9 +148,7 @@ const Hero = () => {
               width: 'min(440px, 66vw)', height: 'min(440px, 66vw)',
               borderRadius: '20px',
               objectFit: 'cover',
-              boxShadow: theme === 'dark'
-                ? '0 16px 48px rgba(0,0,0,0.4)'
-                : '0 16px 40px rgba(15,23,42,0.16)',
+              boxShadow: 'none',
               border: 'none',
               minWidth: 'min(220px, 40vw)', minHeight: 'min(220px, 40vw)',
               maxWidth: '440px', maxHeight: '440px',
@@ -198,6 +203,17 @@ const Hero = () => {
             Building reliable embedded products from firmware to field deployment.
           </p>
 
+          <div style={{
+            display: 'inline-flex',
+            flexWrap: 'wrap',
+            gap: 8,
+            marginBottom: '0.9rem',
+          }}>
+            <span className="case-chip">Open to relocation</span>
+            <span className="case-chip">Willing to work globally</span>
+            <span className="case-chip">Immediate technical discussions</span>
+          </div>
+
           <h2 style={{
             fontSize: 'clamp(1.1rem, 2.2vw, 1.35rem)',
             minHeight: '1.5rem',
@@ -229,6 +245,17 @@ const Hero = () => {
           }}>
             I design embedded software for real-world systems across automotive, industrial, and sensing use cases. My work centers on low-level firmware, board bring-up, protocol stacks, and edge intelligence where reliability, timing, and hardware constraints are non-negotiable.
           </p>
+
+          <ul style={{
+            margin: '0.8rem 0 0.4rem 1rem',
+            padding: 0,
+            color: theme === 'dark' ? '#dbeafe' : '#334155',
+            fontSize: '0.92rem',
+            lineHeight: 1.55,
+            maxWidth: '560px',
+          }}>
+            {HIGHLIGHTS.map((item, idx) => <li key={idx} style={{ marginBottom: 4 }}>{item}</li>)}
+          </ul>
 
           {/* Stats strip */}
           <div className="hero-stats" style={{
@@ -300,6 +327,9 @@ const Hero = () => {
             <Link to="/catchme" className="hero-pill-btn secondary" aria-label="Go to contact page">
               Contact Me
             </Link>
+            <a href="/src/assets/surya%20resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">
+              Resume
+            </a>
             <a href="https://www.linkedin.com/in/surya1412" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               LinkedIn

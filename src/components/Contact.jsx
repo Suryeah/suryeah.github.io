@@ -57,7 +57,7 @@ const Contact = () => {
   const isSmallScreen = useIsSmallScreen(900); // Show breadcrumbs if screen <= 900px
   const breadcrumbs = [
     { label: 'Home', to: '/' },
-    { label: 'Catch Me', to: '/catchme' },
+    { label: 'Build Real Stuff', to: '/catchme' },
   ];
   const sectionRef = useRef();
   useEffect(() => {
@@ -139,6 +139,11 @@ const Contact = () => {
           }}>
             Open to embedded firmware roles, edge-AI collaborations, and engineering consulting discussions.
           </p>
+          <div className="tech-tags-row" style={{ justifyContent: 'center', marginTop: 0, marginBottom: '0.85rem' }}>
+            <span className="case-chip">Open to relocation</span>
+            <span className="case-chip">Willing to work globally</span>
+            <span className="case-chip">Available for interviews</span>
+          </div>
           <div style={{
             width: '100%',
             display: 'flex',
@@ -147,6 +152,7 @@ const Contact = () => {
             justifyContent: 'center',
             marginBottom: '1rem',
           }}>
+            <a href="/src/assets/surya%20resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">Download Resume</a>
             <a href="mailto:surya_24@live.com?subject=Hiring%20Discussion" className="hero-pill-btn secondary">Hiring Discussion</a>
             <a href="mailto:surya_24@live.com?subject=Collaboration%20Request" className="hero-pill-btn secondary">Collaboration</a>
             <a href="mailto:surya_24@live.com?subject=Research%20Query" className="hero-pill-btn secondary">Research Query</a>
