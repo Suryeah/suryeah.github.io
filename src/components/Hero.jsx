@@ -187,9 +187,29 @@ const Hero = () => {
             fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
             minHeight: '2.5rem', fontWeight: 800,
             letterSpacing: '-0.7px', textAlign: 'left',
-            marginBottom: '0.35rem', lineHeight: 1.08, wordBreak: 'break-word',
+            marginBottom: '0.55rem', lineHeight: 1.08, wordBreak: 'break-word',
           }}>
             <span className="hero-gradient-text">Surya Vardhan</span>
+            <span style={{
+              fontSize: 'clamp(1.05rem, 2.1vw, 1.28rem)',
+              fontWeight: 700,
+              marginLeft: '0.55rem',
+              color: theme === 'dark' ? '#b3cdf6' : '#1e3a8a',
+              letterSpacing: '0.2px',
+              whiteSpace: 'nowrap',
+              display: 'inline-block',
+              minWidth: `calc(${maxTitleLength}ch + 1.2rem)`,
+              verticalAlign: 'middle',
+            }}>
+              {displayText}
+              <span style={{
+                background: 'linear-gradient(135deg, #2d6cdf, #7c3aed)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontWeight: 300,
+              }}>|</span>
+            </span>
           </h1>
 
           <p style={{
@@ -212,29 +232,6 @@ const Hero = () => {
             <span className="case-chip">Willing to work globally</span>
             <span className="case-chip">Immediate technical discussions</span>
           </div>
-
-          <h2 style={{
-            fontSize: 'clamp(1.1rem, 2.2vw, 1.35rem)',
-            minHeight: '1.5rem',
-            fontWeight: 700,
-            letterSpacing: '0.2px',
-            textAlign: 'left',
-            marginTop: 0,
-            marginBottom: '1rem',
-            lineHeight: 1.25,
-            width: `calc(${maxTitleLength}ch + 1.2rem)`,
-            minWidth: `calc(${maxTitleLength}ch + 1.2rem)`,
-            color: theme === 'dark' ? '#b3cdf6' : '#1e3a8a',
-          }}>
-            <span>{displayText}</span>
-            <span style={{
-              background: 'linear-gradient(135deg, #2d6cdf, #7c3aed)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              fontWeight: 300,
-            }}>|</span>
-          </h2>
 
           {/* Bio */}
           <p style={{
@@ -369,6 +366,11 @@ const Hero = () => {
           50% { transform: translateY(12px); }
         }
         .scroll-down-indicator { opacity: 0.7; transition: opacity 0.3s; }
+        .hero-section .container h1::after,
+        .hero-section .container h2::after {
+          display: none !important;
+          content: none !important;
+        }
         @media (max-width: 900px) {
           .scroll-down-indicator { display: none !important; }
           .hero-section { background: #fff !important; padding:0!important; margin:0!important; width:100vw!important; min-width:100vw!important; max-width:100vw!important; overflow-x:hidden!important; border:none!important; }
