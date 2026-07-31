@@ -10,6 +10,12 @@ const experiences = [
     period: 'Dec 2023 - Present',
     location: 'Bangalore Urban, Karnataka, India',
     summary: 'Developing software for home appliances as part of a global team.',
+    achievements: [
+      'Delivered firmware features for global appliance platforms with cross-team coordination.',
+      'Strengthened quality through reproducible debugging and structured release validation.',
+      'Contributed to reusable software blocks that improved maintainability across variants.',
+    ],
+    focus: ['Embedded C', 'System Integration', 'Release Reliability'],
     current: true,
     dotColor: '#ef4444',
   },
@@ -19,6 +25,12 @@ const experiences = [
     period: 'Apr 2022 - Dec 2023',
     location: 'Bengaluru, Karnataka, India',
     summary: 'Led SDLC for embedded Linux projects, device driver development, automation test farm integration, and technical recruitment. Improved release efficiency and code reusability.',
+    achievements: [
+      'Led end-to-end SDLC for embedded Linux programs from bring-up to release.',
+      'Integrated automation test farm workflows that reduced repetitive manual verification.',
+      'Improved code reuse across projects by promoting modular driver and middleware patterns.',
+    ],
+    focus: ['Embedded Linux', 'Device Drivers', 'Automation'],
     dotColor: '#f97316',
   },
   {
@@ -27,6 +39,12 @@ const experiences = [
     period: 'Jul 2021 - Feb 2022',
     location: 'Bengaluru, Karnataka, India',
     summary: 'Led a team for EV charger firmware, managed consumer electronics projects, and authored technical documentation. Recognized for rapid project delivery.',
+    achievements: [
+      'Owned EV charger firmware stream and coordinated delivery with hardware and system teams.',
+      'Balanced rapid delivery with product stability through disciplined review and testing loops.',
+      'Authored technical documentation used for smoother handover and support continuity.',
+    ],
+    focus: ['EV Charging', 'Firmware Delivery', 'Technical Documentation'],
     dotColor: '#eab308',
   },
   {
@@ -35,6 +53,12 @@ const experiences = [
     period: 'Oct 2019 - Jul 2021',
     location: 'Bengaluru, Karnataka, India',
     summary: 'Developed RTOS-based safety and IoT products, improved performance and reliability, and contributed to mission-critical defense projects.',
+    achievements: [
+      'Built RTOS-based firmware for safety and IoT products under strict reliability constraints.',
+      'Improved runtime behavior through targeted performance profiling and optimization.',
+      'Contributed to mission-critical defense-oriented embedded deliverables.',
+    ],
+    focus: ['RTOS', 'Safety Systems', 'IoT Firmware'],
     dotColor: '#22c55e',
   },
   {
@@ -43,6 +67,12 @@ const experiences = [
     period: 'Nov 2017 - Jan 2019',
     location: 'Chennai Area, India',
     summary: 'Resolved 1600+ network issues, specializing in OSI Layer troubleshooting and rapid root cause analysis.',
+    achievements: [
+      'Resolved 1600+ production issues with strong SLA adherence and structured RCA.',
+      'Built deep OSI-layer diagnostics habits that improved escalation quality.',
+      'Developed communication discipline across support, engineering, and customer interfaces.',
+    ],
+    focus: ['Troubleshooting', 'RCA', 'Network Systems'],
     dotColor: '#6366f1',
   },
 ];
@@ -54,6 +84,11 @@ const internships = [
     period: 'December 2016 - March 2017 (4 months)',
     location: 'Chennai, Tamil Nadu, India',
     summary: 'Designed and developed working prototype of Regenerative Braking System for Mark-4 Main Battle Tank. Reported to scientists in robotics department of CVRDE.',
+    achievements: [
+      'Developed a working regenerative braking prototype for armored platform context.',
+      'Presented findings and prototype behavior to DRDO/CVRDE scientific teams.',
+    ],
+    focus: ['Defense R&D', 'Prototype Engineering'],
     dotColor: '#0ea5e9',
   },
   {
@@ -62,6 +97,11 @@ const internships = [
     period: 'May 2017 - Jul 2017',
     location: 'Bangalore Urban, Karnataka, India',
     summary: 'Worked on embedded C projects and automation scripts for test benches.',
+    achievements: [
+      'Contributed to embedded C modules and test bench automation support scripts.',
+      'Built early exposure to industrial firmware quality expectations.',
+    ],
+    focus: ['Embedded C', 'Test Automation'],
     dotColor: '#ef4444',
   },
 ];
@@ -197,6 +237,12 @@ const TimelineItem = ({ exp, isLast, theme, index, total }) => (
       <div style={{ fontWeight: 500, fontSize: '1rem', margin: '2px 0 2px 0', color: theme === 'dark' ? '#b3cdf6' : '#222' }}>{exp.period}</div>
       <div style={{ fontSize: '0.97rem', color: theme === 'dark' ? '#b3cdf6' : '#555', marginBottom: 2 }}>{exp.location}</div>
       <div style={{ fontSize: '0.98rem', color: theme === 'dark' ? '#e0e6f1' : '#333', marginBottom: 0 }}>{exp.summary}</div>
+      <ul style={{ margin: '10px 0 8px 18px', padding: 0, color: theme === 'dark' ? '#dbeafe' : '#334155', fontSize: '0.9rem', lineHeight: 1.55 }}>
+        {exp.achievements.map((point, i) => <li key={i} style={{ marginBottom: 3 }}>{point}</li>)}
+      </ul>
+      <div className="tech-tags-row" style={{ marginTop: 0 }}>
+        {exp.focus.map((f, i) => <span key={i} className="case-chip">{f}</span>)}
+      </div>
     </div>
   </div>
 );

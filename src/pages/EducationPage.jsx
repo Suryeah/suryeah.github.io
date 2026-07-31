@@ -8,7 +8,13 @@ const educationList = [
     field: 'Mechatronics, Robotics, and Automation Engineering',
     period: '2013 - 2017',
     location: 'Coimbatore, Tamil Nadu, India',
-    summary: '',
+    summary: 'Built a strong foundation in control systems, embedded design, robotics, and practical automation engineering.',
+    highlights: [
+      'Capstone and lab-heavy coursework centered on sensors, control loops, and automation fundamentals.',
+      'Hands-on development exposure spanning electronics integration and firmware problem-solving.',
+      'Built discipline in system-level thinking across mechanical, electrical, and software interfaces.',
+    ],
+    coursework: ['Control Systems', 'Microcontrollers', 'Industrial Automation', 'Robotics', 'Instrumentation'],
     logo: 'https://media.licdn.com/dms/image/v2/C560BAQE1Qed7IF2Jzg/company-logo_200_200/company-logo_200_200/0/1639066812484?e=1753315200&v=beta&t=fYwbVJansjr-EQUqKuyFiysPZqI3PFiunwki6TShACQ',
   },
 ];
@@ -115,7 +121,13 @@ const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
         {edu.school}<br/>{edu.location}
       </div>
       <div style={{ fontSize: '0.98rem', color: theme === 'dark' ? '#e0e6f1' : '#333', marginBottom: 0 }}>{edu.field}</div>
-      {edu.summary && <div style={{ fontSize: '0.98rem', color: theme === 'dark' ? '#e0e6f1' : '#333', marginTop: 4 }}>{edu.summary}</div>}
+      {edu.summary && <div style={{ fontSize: '0.95rem', color: theme === 'dark' ? '#e0e6f1' : '#333', marginTop: 8, lineHeight: 1.55 }}>{edu.summary}</div>}
+      <ul style={{ margin: '10px 0 8px 18px', padding: 0, color: theme === 'dark' ? '#dbeafe' : '#334155', fontSize: '0.9rem', lineHeight: 1.55 }}>
+        {edu.highlights.map((point, i) => <li key={i} style={{ marginBottom: 3 }}>{point}</li>)}
+      </ul>
+      <div className="tech-tags-row" style={{ marginTop: 0 }}>
+        {edu.coursework.map((c, i) => <span key={i} className="tech-tag">{c}</span>)}
+      </div>
     </div>
   </div>
 );
