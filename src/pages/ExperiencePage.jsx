@@ -94,19 +94,6 @@ const internships = [
     focus: ['Defense R&D', 'Prototype Engineering'],
     dotColor: '#0ea5e9',
   },
-  {
-    company: 'Robert Bosch',
-    title: 'Embedded Intern',
-    period: 'May 2017 - Jul 2017',
-    location: 'Bangalore Urban, Karnataka, India',
-    summary: 'Worked on embedded C projects and automation scripts for test benches.',
-    achievements: [
-      'Contributed to embedded C modules and test bench automation support scripts.',
-      'Built early exposure to industrial firmware quality expectations.',
-    ],
-    focus: ['Embedded C', 'Test Automation'],
-    dotColor: '#ef4444',
-  },
 ];
 
 const showcase = [
