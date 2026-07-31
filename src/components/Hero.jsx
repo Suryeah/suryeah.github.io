@@ -351,7 +351,7 @@ const Hero = () => {
 
       {/* Scroll Down Indicator */}
       <div className="scroll-down-indicator" style={{
-        position: 'absolute', left: 'clamp(84px, 26vw, 340px)', bottom: '6vh',
+        position: 'absolute', left: '50%', bottom: '2.5vh',
         transform: 'translateX(-50%)', zIndex: 2,
         display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none',
       }}>
