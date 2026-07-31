@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import { useTheme } from './ThemeContext.jsx';
 
 const SKILL_CATEGORIES = [
@@ -13,7 +13,7 @@ const SKILL_CATEGORIES = [
   },
   {
     label: 'Protocols & Interfaces',
-    icon: '🔗',
+    icon: '📡',
     accent: '#0ea5e9',
     level: 'Advanced',
     context: ['Field communication', 'Telemetry'],
@@ -31,7 +31,7 @@ const SKILL_CATEGORIES = [
   },
   {
     label: 'Microcontrollers (MCU)',
-    icon: '🔌',
+    icon: '🎛️',
     accent: '#7c3aed',
     level: 'Expert',
     context: ['Board bring-up', 'Peripheral control'],
@@ -40,7 +40,7 @@ const SKILL_CATEGORIES = [
   },
   {
     label: 'Microprocessors (MPU)',
-    icon: '🧠',
+    icon: '⚡',
     accent: '#db2777',
     level: 'Advanced',
     context: ['Embedded Linux', 'Application SoCs'],
@@ -76,7 +76,7 @@ const SKILL_CATEGORIES = [
   },
   {
     label: 'Hardware & Debug Tools',
-    icon: '🔭',
+    icon: '🔬',
     accent: '#0891b2',
     level: 'Advanced',
     context: ['Lab validation', 'Fault isolation'],
@@ -85,7 +85,7 @@ const SKILL_CATEGORIES = [
   },
   {
     label: 'Version Control & Collaboration',
-    icon: '🗂️',
+    icon: '🌿',
     accent: '#4f46e5',
     level: 'Advanced',
     context: ['Team delivery', 'Traceability'],
