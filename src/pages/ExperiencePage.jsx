@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../components/ThemeContext.jsx';
 import techMahindraLogo from '../assets/tech-mahindra-logo.svg';
 import senpronicsLogo from '../assets/senpronics-logo.svg';
+import mistralLogo from '../assets/mistral-logo.png';
+import nashLogo from '../assets/nash-logo.png';
+import drdoLogo from '../assets/drdo-logo.png';
 
 const experiences = [
   {
@@ -133,10 +136,10 @@ const companyIcons = {
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg" alt="Robert Bosch Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
   'Mistral Solutions Pvt. Ltd': (
-    <img src="https://upload.wikimedia.org/wikipedia/en/6/64/Mistral_new_logo_post_merger_with_AXISCADES.png" alt="Mistral Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
+    <img src={mistralLogo} alt="Mistral Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
   'NASH Industries (I) Pvt. Ltd.': (
-    <img src="https://www.nashindia.com/images/logo.png" alt="NASH Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
+    <img src={nashLogo} alt="NASH Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
   'Senpronics': (
     <img src={senpronicsLogo} alt="Senpronics Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
@@ -145,7 +148,7 @@ const companyIcons = {
     <img src={techMahindraLogo} alt="Tech Mahindra Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
   'Defence Research and Development Organisation (DRDO)': (
-    <img src="https://nijuktikhabar.in/wp-content/uploads/2020/04/drdo-cvrde-logo-320x300.png" alt="DRDO Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
+    <img src={drdoLogo} alt="DRDO Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
 };
 

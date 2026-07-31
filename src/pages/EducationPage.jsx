@@ -44,7 +44,8 @@ const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
       boxSizing: 'border-box',
       height: 78,
     }}>
-      <img src={edu.logo} alt={edu.school + ' Logo'} style={{ width: 90, height: 48, objectFit: 'contain', background: 'white', borderRadius: 0, margin: 0, padding: 0, boxShadow: '0 0 2px #ccc' }} />
+      <img src={edu.logo} alt={edu.school + ' Logo'} style={{ width: 90, height: 48, objectFit: 'contain', background: 'white', borderRadius: 0, margin: 0, padding: 0, boxShadow: '0 0 2px #ccc' }} onError={e => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
+      <div style={{ display: 'none', width: 90, height: 48, alignItems: 'center', justifyContent: 'center', background: '#e3e8f0', borderRadius: 8, color: '#2d6cdf', fontWeight: 700, fontSize: 14, boxShadow: '0 0 2px #ccc' }}>CIET</div>
     </div>
     {/* Timeline vertical line and dot */}
     <div style={{
