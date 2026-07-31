@@ -139,6 +139,17 @@ const Navbar = () => {
                       </span>
                     </li>
                   ))}
+                  <li style={{ width: '100%' }}>
+                    <a
+                      href="/resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMenuOpen(false)}
+                      style={{ color: navAccent, fontWeight: 700, fontSize: '1.1rem', cursor: 'pointer', display: 'block', padding: '0.5rem 0', textDecoration: 'none' }}
+                    >
+                      Download Resume
+                    </a>
+                  </li>
                   <li style={{ width: '100%', marginTop: 8 }}>
                     <button
                       aria-label="Toggle theme"
@@ -204,6 +215,16 @@ const Navbar = () => {
                 </span>
               </li>
             ))}
+            <li style={{ listStyle: 'none' }}>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: navAccent, fontWeight: 700, fontSize: '1.05rem', textDecoration: 'none' }}
+              >
+                Download Resume
+              </a>
+            </li>
             <li style={{ listStyle: 'none', marginLeft: 8 }}>
               <button
                 aria-label="Toggle theme"
