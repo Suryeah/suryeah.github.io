@@ -27,7 +27,7 @@
   /* Typography */
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -67,9 +67,18 @@ a, button, .cta-btn, .product-card, .project-card, .skill-circle {
 /* ─── Base resets ─── */
 *, *::before, *::after { box-sizing: border-box; }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4 { margin: 0; }
+
+h1 {
   font-family: 'Sora', 'Inter', system-ui;
-  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h2, h3, h4 {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 a {
@@ -81,12 +90,14 @@ a:hover { color: var(--brand-dark); }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  display: block;
   min-width: 320px;
   min-height: 100vh;
   background: var(--bg-secondary);
   color: var(--text);
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 button {

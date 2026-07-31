@@ -184,6 +184,7 @@ const Hero = () => {
           </div>
 
           <h1 style={{
+            fontFamily: "'Sora', 'Inter', system-ui",
             fontSize: 'clamp(2.4rem, 5vw, 3.8rem)',
             minHeight: '2.5rem', fontWeight: 800,
             letterSpacing: '-0.7px', textAlign: 'left',

@@ -540,23 +540,16 @@ section.visible {
    PHASE 1 — Typography: Sora for all headings
    ══════════════════════════════════════════ */
 h1, h2, h3, h4 {
-  font-family: 'Sora', 'Inter', system-ui;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 .container h2 {
   position: relative;
   display: inline-block;
-  padding-bottom: 14px;
-  margin-bottom: 6px;
+  padding-bottom: 0;
+  margin-bottom: 12px;
 }
 .container h2::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 56px;
-  height: 3px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #2d6cdf, #7c3aed);
+  content: none;
 }
 
 /* ══════════════════════════════════════════
