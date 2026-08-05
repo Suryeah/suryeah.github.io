@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Products from './components/Products';
@@ -105,7 +104,6 @@ function AppContent() {
     <div className="app-content-wrapper">
       <ScrollProgress />
       <CursorGlow />
-      <Navbar />
       <Hero />
       <Skills />
       <Products />
