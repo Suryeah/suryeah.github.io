@@ -212,7 +212,7 @@ const Education = () => {
         </div>
         <div>
           <h3 style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', fontWeight: 800, fontSize: '1.25rem', marginBottom: 14, letterSpacing: 0.4 }}>
-            Education
+            Degree
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {academics.map((edu, i, arr) => (
