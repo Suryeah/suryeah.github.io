@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import ProductsPage from './pages/ProductsPage';
-import ProjectsPage from './pages/ProjectsPage';
-import EducationPage from './pages/EducationPage';
-import ExperiencePage from './pages/ExperiencePage';
-import CatchMePage from './pages/CatchMePage';
+import Products from './components/Products';
+import Projects from './components/Projects';
+import Education from './components/Education';
+import Experience from './components/Experience';
+import Contact from './components/Contact';
 import './App.css';
 import { ThemeProvider, useTheme } from './components/ThemeContext.jsx';
 
@@ -72,7 +71,6 @@ function Footer() {
 /* ── Styled 404 ── */
 function NotFound() {
   const { theme } = useTheme();
-  const navigate = useNavigate();
   return (
     <div className="not-found-page" style={{
       background: theme === 'dark' ? '#23272f' : '#fff',
@@ -82,7 +80,7 @@ function NotFound() {
       <p className="not-found-msg">Page not found</p>
       <p className="not-found-sub">Looks like you wandered off the firmware path.</p>
       <button
-        onClick={() => navigate('/')}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         style={{
           marginTop: '1rem',
           padding: '0.7rem 2rem',
@@ -103,34 +101,18 @@ function NotFound() {
 }
 
 function AppContent() {
-  const location = useLocation();
-  useEffect(() => {
-    document.body.classList.add('scroll-lock');
-    document.getElementById('root').classList.add('scroll-lock');
-    const timer = setTimeout(() => {
-      document.body.classList.remove('scroll-lock');
-      document.getElementById('root').classList.remove('scroll-lock');
-    }, 1300);
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    return () => clearTimeout(timer);
-  }, [location]);
-
   return (
     <div className="app-content-wrapper">
       <ScrollProgress />
       <CursorGlow />
       <Navbar />
-      <div key={location.pathname} className="route-fade">
-        <Routes>
-          <Route path="/" element={<><Hero /><Skills /></>} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/education" element={<EducationPage />} />
-          <Route path="/experience" element={<ExperiencePage />} />
-          <Route path="/catchme" element={<CatchMePage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
+      <Hero />
+      <Skills />
+      <Products />
+      <Projects />
+      <Education />
+      <Experience />
+      <Contact />
       <Footer />
     </div>
   );
@@ -139,9 +121,7 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <AppContent />
-      </Router>
+      <AppContent />
     </ThemeProvider>
   );
 }

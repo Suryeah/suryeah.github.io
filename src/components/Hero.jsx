@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import heroPhoto from '../assets/hero-photo.png';
 import { useTheme } from './ThemeContext.jsx';
-import { Link } from 'react-router-dom';
 
 const TITLES = [
   'Embedded Firmware Engineer',
@@ -320,12 +319,12 @@ const Hero = () => {
 
           {/* CTA pill buttons */}
           <div className="hero-cta-row">
-            <Link to="/projects" className="hero-pill-btn primary" aria-label="View projects">
+            <span onClick={() => { const el = document.getElementById('projects'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="hero-pill-btn primary" aria-label="View projects" style={{ cursor: 'pointer' }}>
               View Projects
-            </Link>
-            <Link to="/catchme" className="hero-pill-btn secondary" aria-label="Go to contact page">
+            </span>
+            <span onClick={() => { const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="hero-pill-btn secondary" aria-label="Go to contact page" style={{ cursor: 'pointer' }}>
               Contact Me
-            </Link>
+            </span>
             <a href="https://suryeah.github.io/datasheet/Surya.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">
               Resume
             </a>

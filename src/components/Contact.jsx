@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from './ThemeContext.jsx';
-import { Link } from 'react-router-dom';
 
 function useIsSmallScreen(breakpoint = 900) {
   const [isSmall, setIsSmall] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= breakpoint : false);
@@ -54,15 +53,22 @@ const CONTACT_LINKS = [
 
 const Contact = () => {
   const { theme } = useTheme();
-  const isSmallScreen = useIsSmallScreen(900); // Show breadcrumbs if screen <= 900px
+  const isSmallScreen = useIsSmallScreen(900);
   const breadcrumbs = [
-    { label: 'Home', to: '/' },
-    { label: 'Build Real Stuff', to: '/catchme' },
+    { label: 'Home', id: 'hero' },
+    { label: 'Build Real Stuff', id: 'contact' },
   ];
   const sectionRef = useRef();
   useEffect(() => {
     if (sectionRef.current) sectionRef.current.classList.add('visible');
   }, []);
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section
@@ -106,13 +112,12 @@ const Contact = () => {
             alignItems: 'center',
           }}
         >
-          {/* Breadcrumbs for small screens */}
           {isSmallScreen && (
             <nav aria-label="breadcrumb" className="breadcrumbs-nav" style={{ width: '100%', marginBottom: '1.2rem' }}>
               <ol style={{ display: 'flex', flexWrap: 'wrap', listStyle: 'none', padding: 0, margin: 0, fontSize: '1rem', color: theme === 'dark' ? '#b3cdf6' : '#174ea6' }}>
                 {breadcrumbs.map((crumb, idx) => (
-                  <li key={crumb.to} style={{ display: 'flex', alignItems: 'center' }}>
-                    <Link to={crumb.to} style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', textDecoration: 'none', fontWeight: 600 }}>{crumb.label}</Link>
+                  <li key={crumb.id} style={{ display: 'flex', alignItems: 'center' }}>
+                    <span onClick={() => scrollToSection(crumb.id)} style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', textDecoration: 'none', fontWeight: 600, cursor: 'pointer' }}>{crumb.label}</span>
                     {idx < breadcrumbs.length - 1 && <span style={{ margin: '0 0.5rem' }}>/</span>}
                   </li>
                 ))}

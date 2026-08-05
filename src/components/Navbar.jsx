@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from './ThemeContext.jsx';
 
 const Navbar = () => {
@@ -7,8 +6,6 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
   const menuRef = useRef();
 
   useEffect(() => {
@@ -35,13 +32,21 @@ const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClick);
   }, [menuOpen]);
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      setMenuOpen(false);
+    }
+  };
+
   const navLinks = [
-    { label: 'Home', to: '/' },
-    { label: 'Products', to: '/products' },
-    { label: 'Projects', to: '/projects' },
-    { label: 'Education', to: '/education' },
-    { label: 'Experience', to: '/experience' },
-    { label: 'Build Real Stuff', to: '/catchme' },
+    { label: 'Home', id: 'hero' },
+    { label: 'Products', id: 'products' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'Education', id: 'education' },
+    { label: 'Experience', id: 'experience' },
+    { label: 'Build Real Stuff', id: 'contact' },
   ];
 
   const navBg = scrolled
@@ -51,7 +56,7 @@ const Navbar = () => {
   const navAccent = theme === 'dark' ? '#93c5fd' : '#174ea6';
 
   return (
-    <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`} style={{ background: navBg, color: theme === 'dark' ? '#fff' : '#222' }}>
+    <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`} style={{ background: navBg, color: theme === 'dark' ? '#fff' : '#222', position: 'sticky', top: 0, zIndex: 100, transition: 'background 0.3s' }}>
       <div className="container" style={{
         width: '100%',
         maxWidth: '1200px',
@@ -130,10 +135,10 @@ const Navbar = () => {
                   listStyle: 'none',
                 }}>
                   {navLinks.map((link) => (
-                    <li key={link.to} style={{ width: '100%' }}>
+                    <li key={link.id} style={{ width: '100%' }}>
                       <span
                         style={{ color: navText, fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer', display: 'block', padding: '0.5rem 0' }}
-                        onClick={() => { setMenuOpen(false); navigate(link.to); }}
+                        onClick={() => scrollToSection(link.id)}
                       >
                         {link.label}
                       </span>
@@ -180,7 +185,6 @@ const Navbar = () => {
                 </ul>
               </div>
             )}
-            {/* Overlay background for menu */}
             {menuOpen && (
               <div
                 onClick={() => setMenuOpen(false)}
@@ -195,7 +199,6 @@ const Navbar = () => {
                 }}
               />
             )}
-            {/* Slide in animation */}
             <style>{`
               @keyframes slideInRight {
                 from { transform: translateX(100%); }
@@ -206,10 +209,10 @@ const Navbar = () => {
         ) : (
           <ul className="nav-links" style={{ display: 'flex', gap: '0.9rem', margin: 0, padding: '0 10px', listStyle: 'none', alignItems: 'center', width: '100%', justifyContent: 'space-evenly' }}>
             {navLinks.map((link) => (
-              <li key={link.to} style={{ listStyle: 'none' }}>
+              <li key={link.id} style={{ listStyle: 'none' }}>
                 <span
                   style={{ color: navText, fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer' }}
-                  onClick={() => navigate(link.to)}
+                  onClick={() => scrollToSection(link.id)}
                 >
                   {link.label}
                 </span>
