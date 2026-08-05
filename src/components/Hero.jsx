@@ -9,10 +9,9 @@ const TITLES = [
 ];
 
 const FEATURED_PROJECT = {
-  title: 'Wireless Embedded DAQ Platform',
-  detail: 'Designed a low-latency AD7771 data path sampled at 8 KSPS and streamed over TCP using Teensy 3.6 + ESP32.',
-  stack: ['Teensy 3.6', 'ESP32', 'AD7771', 'TCP Socket'],
-  github: 'https://github.com/Suryeah/AD7771-Teensy3.6-ESP32-.git',
+  title: 'TI AM64x Inter-core IPC',
+  detail: 'Built inter-core communication between R5 and A53 to transfer ADC data reliably on TI AM64x platforms.',
+  stack: ['TI AM64x', 'R5', 'A53', 'IPC', 'ADC'],
 };
 
 const TYPING_SPEED = 120;
@@ -24,13 +23,13 @@ const STATS = [
   { end: 5, suffix: '+', label: 'Years Exp.' },
   { end: 4, suffix: '', label: 'Products Shipped' },
   { end: 35, suffix: '%', label: 'Faster Delivery' },
-  { end: 1600, suffix: '+', label: 'Issues Resolved' },
+  { end: 1, suffix: '', label: 'Patent Filed' },
 ];
 
 const HIGHLIGHTS = [
   'Delivered 4 commercial products from concept to market.',
   'Reduced development cycle time by 35% through structured firmware delivery.',
-  'Improved project velocity and product outcomes by up to 30% on key programs.',
+  'Recognized for award-winning delivery on embedded Linux and EV charging programs.',
 ];
 
 function useCountUp(target, duration = 1200, start = false) {
@@ -71,8 +70,6 @@ const Hero = () => {
   const [statsStarted, setStatsStarted] = useState(false);
   const timeoutRef = useRef();
   const sectionRef = useRef();
-
-  const maxTitleLength = Math.max(...TITLES.map(t => t.length));
 
   useEffect(() => {
     const currentTitle = TITLES[titleIndex];
@@ -179,7 +176,7 @@ const Hero = () => {
             border: theme === 'dark' ? '1px solid rgba(34,197,94,0.35)' : '1px solid rgba(22,101,52,0.25)',
           }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 0 4px rgba(34,197,94,0.2)' }} />
-            Currently at Robert Bosch Engineering
+            Currently at Bosch Global Software Technologies
           </div>
 
           <h1 style={{
@@ -241,7 +238,7 @@ const Hero = () => {
             fontSize: '0.98rem', lineHeight: 1.72, margin: 0,
             textAlign: 'justify', maxWidth: '520px',
           }}>
-            I design embedded software for real-world systems across automotive, industrial, and sensing use cases. My work centers on low-level firmware, board bring-up, protocol stacks, and edge intelligence where reliability, timing, and hardware constraints are non-negotiable.
+            I design embedded software for real-world systems across appliances, automotive, industrial, and sensing use cases. My work centers on low-level firmware, board bring-up, protocol stacks, and edge intelligence where reliability, timing, and hardware constraints are non-negotiable.
           </p>
 
           <ul style={{
@@ -281,40 +278,42 @@ const Hero = () => {
             }}>
               Flagship Build
             </div>
-            <div style={{
-              fontSize: '1rem',
-              fontWeight: 700,
-              color: theme === 'dark' ? '#e2e8f0' : '#0f172a',
-              marginBottom: '0.3rem',
-            }}>
-              {FEATURED_PROJECT.title}
-            </div>
-            <div style={{
-              fontSize: '0.88rem',
-              lineHeight: 1.6,
-              color: theme === 'dark' ? '#cbd5e1' : '#475569',
-              marginBottom: '0.55rem',
-            }}>
-              {FEATURED_PROJECT.detail}
-            </div>
-            <div className="tech-tags-row" style={{ marginTop: 0, marginBottom: '0.45rem' }}>
-              {FEATURED_PROJECT.stack.map((item, idx) => (
-                <span key={idx} className="tech-tag">{item}</span>
-              ))}
-            </div>
-            <a
-              href={FEATURED_PROJECT.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontSize: '0.85rem',
+              <div style={{
+                fontSize: '1rem',
                 fontWeight: 700,
-                color: theme === 'dark' ? '#b3cdf6' : '#1d4ed8',
-                textDecoration: 'none',
-              }}
-            >
-              View source on GitHub →
-            </a>
+                color: theme === 'dark' ? '#e2e8f0' : '#0f172a',
+                marginBottom: '0.3rem',
+              }}>
+                {FEATURED_PROJECT.title}
+              </div>
+              <div style={{
+                fontSize: '0.88rem',
+                lineHeight: 1.6,
+                color: theme === 'dark' ? '#cbd5e1' : '#475569',
+                marginBottom: '0.55rem',
+              }}>
+                {FEATURED_PROJECT.detail}
+              </div>
+              <div className="tech-tags-row" style={{ marginTop: 0, marginBottom: '0.45rem' }}>
+                {FEATURED_PROJECT.stack.map((item, idx) => (
+                  <span key={idx} className="tech-tag">{item}</span>
+                ))}
+              </div>
+              {FEATURED_PROJECT.github && (
+                <a
+                  href={FEATURED_PROJECT.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: '0.85rem',
+                    fontWeight: 700,
+                    color: theme === 'dark' ? '#b3cdf6' : '#1d4ed8',
+                    textDecoration: 'none',
+                  }}
+                >
+                  View source on GitHub →
+                </a>
+              )}
           </div>
 
           <div className="hero-cta-row">
@@ -339,7 +338,7 @@ const Hero = () => {
 
       {/* Scroll Down Indicator */}
       <div className="scroll-down-indicator" style={{
-        position: 'absolute', left: '50%', bottom: '2.5vh',
+        position: 'absolute', left: 'calc(50% - 140px)', bottom: '2.5vh',
         transform: 'translateX(-50%)', zIndex: 2,
         display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none',
       }}>

@@ -139,7 +139,7 @@ const companyIcons = {
   ),
 };
 
-const TimelineItem = ({ exp, isLast, theme, index, total }) => (
+const TimelineItem = ({ exp, isLast, theme, index }) => (
   <div
     style={{
       display: 'flex',

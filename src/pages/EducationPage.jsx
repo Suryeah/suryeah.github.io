@@ -19,7 +19,7 @@ const educationList = [
   },
 ];
 
-const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
+const EducationTimelineItem = ({ edu, isLast, theme, index }) => (
   <div
     style={{
       display: 'flex',
