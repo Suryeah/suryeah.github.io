@@ -257,9 +257,6 @@ const Contact = () => {
           .breadcrumbs-nav {
             display: block !important;
           }
-          nav[role="navigation"], .main-navbar, .navbar, .desktop-nav {
-            display: none !important;
-          }
         }
         @media (min-width: 901px) {
           .breadcrumbs-nav {

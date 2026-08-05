@@ -56,7 +56,7 @@ const Navbar = () => {
   const navAccent = theme === 'dark' ? '#93c5fd' : '#174ea6';
 
   return (
-    <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`} style={{ background: navBg, color: theme === 'dark' ? '#fff' : '#222', position: 'sticky', top: 0, zIndex: 100, transition: 'background 0.3s' }}>
+    <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`} style={{ display: 'flex', flexDirection: 'column', background: navBg, color: theme === 'dark' ? '#fff' : '#222', position: 'sticky', top: 0, zIndex: 100, transition: 'background 0.3s' }}>
       <div className="container" style={{
         width: '100%',
         maxWidth: '1200px',
@@ -71,7 +71,9 @@ const Navbar = () => {
         overflowX: 'hidden',
       }}>
         {isMobile ? (
-          <div ref={menuRef} style={{ position: 'relative', marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+          <>
+            <span style={{ fontSize: '1.3rem', fontWeight: 800, color: navAccent }}>SV</span>
+            <div ref={menuRef} style={{ position: 'relative', marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
             <button
               aria-label="Open navigation menu"
               onClick={() => setMenuOpen((v) => !v)}
@@ -205,7 +207,8 @@ const Navbar = () => {
                 to { transform: translateX(0); }
               }
             `}</style>
-          </div>
+            </div>
+          </>
         ) : (
           <ul className="nav-links" style={{ display: 'flex', gap: '0.9rem', margin: 0, padding: '0 10px', listStyle: 'none', alignItems: 'center', width: '100%', justifyContent: 'space-evenly' }}>
             {navLinks.map((link) => (
