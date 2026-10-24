@@ -1,32 +1,31 @@
 import React, { useEffect, useRef } from 'react';
-import { useTheme } from './ThemeContext.jsx';
 
 const PROJECTS = [
   {
-    name: 'Atom M5 stack Star N/W DAQ',
+    name: 'AD7771 Wireless DAQ',
     challenge: 'Build reliable high-rate vibration acquisition with wireless backhaul for field deployment.',
     architecture: 'AD7771 front-end sampled at 8 KSPS on Teensy 3.6; ESP32 handles TCP telemetry.',
-    outcome: 'Stable remote streaming pipeline for embedded DAQ with low packet loss in real-world trials.',
+    outcome: 'Validated the acquisition-to-TCP streaming path in real-world trials.',
     role: 'Firmware + telemetry stack + integration validation',
     github: 'https://github.com/Suryeah/AD7771-Teensy3.6-ESP32-.git',
     tags: ['Teensy 3.6', 'ESP32', 'TCP Socket', 'AD7771', 'DAQ', '8KSPS'],
     constraints: ['Real-time sampling', 'Wireless reliability'],
   },
   {
-    name: 'ESP32 Based Remote DAQ',
+    name: 'ESP32 Remote Vibration DAQ',
     challenge: 'Acquire and stream remote analog vibration signals over unstable wireless links.',
     architecture: 'ESP32 sampling + remote transmission path tuned for periodic sensor payloads.',
-    outcome: 'Practical remote DAQ node for long-duration logging use cases.',
+    outcome: 'Built an ESP32 vibration node for long-duration remote acquisition and logging.',
     role: 'Firmware architecture + data transport design',
     github: 'https://github.com/Suryeah/ESP32-Based-ADXL335-DAQ.git',
     tags: ['ESP32', 'ADXL335', 'DAQ', 'Wireless'],
     constraints: ['Power budget', 'Field noise'],
   },
   {
-    name: 'nRF24L01 Multi Slave Communication',
+    name: 'nRF24L01 Four-Node Polling Network',
     challenge: 'Coordinate deterministic polling across multiple wireless nodes without collisions.',
     architecture: 'Master nRF24L01 polls four slave nodes over structured SPI-managed radio sessions.',
-    outcome: 'Repeatable multi-node polling cycle with predictable update cadence.',
+    outcome: 'Implemented a repeatable polling cycle across four slave nodes.',
     role: 'Protocol design + scheduler implementation',
     github: 'https://github.com/Suryeah/nRF24L01-1-4-Polling.git',
     tags: ['nRF24L01', 'SPI', 'Polling', 'Accelerometer'],
@@ -73,17 +72,7 @@ const PROJECTS = [
     constraints: ['Sensor synchronization', 'Noise handling'],
   },
   {
-    name: 'ESP32-Based ADXL335 DAQ',
-    challenge: 'Create a compact node for 1 kSPS analog motion acquisition and transport.',
-    architecture: 'ESP32 sampling pipeline + TCP/IP transmission for remote DAQ access.',
-    outcome: 'Remote motion-data pipeline validated for distributed sensing concepts.',
-    role: 'Sampling pipeline + network transfer',
-    github: 'https://github.com/Suryeah/ESP32-Based-ADXL335-DAQ',
-    tags: ['ESP32', 'ADXL335', '1kSPS', 'TCP/IP'],
-    constraints: ['Sample integrity', 'Throughput consistency'],
-  },
-  {
-    name: 'N78E003 ADC OLED',
+    name: 'Nuvoton ADC/OLED Firmware',
     challenge: 'Demonstrate compact ADC-to-display firmware flow on constrained MCU resources.',
     architecture: 'N76E003 ADC data acquisition with OLED display over lightweight interface stack.',
     outcome: 'Working reference implementation for constrained microcontroller UI telemetry.',
@@ -95,30 +84,30 @@ const PROJECTS = [
 ];
 
 const Projects = () => {
-  const { theme } = useTheme();
   const sectionRef = useRef();
   useEffect(() => {
     if (sectionRef.current) sectionRef.current.classList.add('visible');
   }, []);
   return (
-    <section ref={sectionRef} id="projects" className="products-section" style={{ background: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '#222', width: '100vw', minHeight: '100vh', padding: 0, margin: 0 }}>
+    <section ref={sectionRef} id="projects" className="products-section" style={{ background: 'var(--bg-secondary)', color: 'var(--text)', width: '100vw', minHeight: '100vh', padding: 0, margin: 0 }}>
       <div className="container">
-        <h2 style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6' }}>Projects</h2>
-        <p style={{ color: theme === 'dark' ? '#94a3b8' : '#6b7280', fontSize: 15, marginTop: 6, marginBottom: 28 }}>
-          Embedded case studies focused on constraints, architecture choices, and measurable outcomes.
+        <h2 style={{ color: 'var(--text)' }}>Projects</h2>
+        <p style={{ color: 'var(--text-muted)', fontSize: 15, marginTop: 6, marginBottom: 28 }}>
+          Selected embedded systems with their engineering constraints, architecture, and implementation details.
         </p>
+        <h3 style={{ color: 'var(--text)', marginBottom: 12 }}>Featured Projects</h3>
         <div className="products-list">
-          {PROJECTS.map((project, idx) => (
-            <div key={idx} className="product-card" style={{
-              background: theme === 'dark' ? '#1e2330' : '#f8faff',
+          {PROJECTS.slice(0, 3).map((project) => (
+            <div key={project.name} className="product-card" style={{
+              background: 'var(--surface)',
               borderRadius: 14,
-              boxShadow: theme === 'dark' ? '0 2px 8px rgba(0,0,0,0.2)' : '0 2px 8px rgba(45,108,223,0.06)',
+              boxShadow: 'var(--shadow-sm)',
               padding: '1.4rem',
-              color: theme === 'dark' ? '#fff' : '#222',
-              borderTop: '3px solid #2d6cdf',
+              color: 'var(--text)',
+              borderTop: '3px solid var(--brand)',
               display: 'flex', flexDirection: 'column', gap: 6,
             }}>
-              <h3 style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', margin: 0 }}>{project.name}</h3>
+              <h3 style={{ color: 'var(--text)', margin: 0 }}>{project.name}</h3>
               <div className="case-block">
                 <span className="case-label">Challenge:</span> {project.challenge}
               </div>
@@ -140,12 +129,29 @@ const Projects = () => {
               </div>
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer"
-                  style={{ color: theme === 'dark' ? '#b3cdf6' : '#2d6cdf', textDecoration: 'underline', fontWeight: 600, fontSize: '0.875rem', marginTop: 4 }}>
+                  style={{ color: 'var(--brand)', textDecoration: 'underline', fontWeight: 600, fontSize: '0.875rem', marginTop: 4 }}>
                   View on GitHub →
                 </a>
               )}
             </div>
           ))}
+        </div>
+        <div className="additional-projects">
+          <h3 style={{ color: 'var(--text)' }}>More Projects</h3>
+          <div className="additional-projects-list">
+            {PROJECTS.slice(3).map((project) => (
+              <a
+                key={project.name}
+                className="additional-project-link"
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>{project.name}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

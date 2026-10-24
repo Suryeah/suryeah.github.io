@@ -1,1 +1,5 @@
-// Removed ThemeContext.js as ThemeContext.jsx exists to avoid import confusion.
+import { createContext, useContext } from 'react';
+
+export const ThemeContext = createContext();
+
+export const useTheme = () => useContext(ThemeContext);

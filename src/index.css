@@ -1,31 +1,61 @@
 /* ─── Design tokens ─── */
 :root {
   /* Brand */
-  --brand: #2d6cdf;
-  --brand-dark: #174ea6;
-  --brand-purple: #7c3aed;
-  --gradient-brand: linear-gradient(135deg, #2d6cdf 0%, #7c3aed 100%);
-  --gradient-text: linear-gradient(135deg, #2d6cdf 30%, #7c3aed 100%);
+  --brand: #2856d8;
+  --brand-dark: #1d3fa8;
+  --brand-purple: #d96c57;
+  --signal: #f2b84b;
+  --signal-soft: rgba(196,131,25,0.2);
+  --coral: #d96c57;
+  --status-surface: rgba(242,184,75,0.14);
+  --status-text: #8a5a08;
+  --status-border: rgba(138,90,8,0.25);
+  --text-on-brand: #ffffff;
+  --text-on-signal: #242a38;
+  --focus-ring: rgba(40,86,216,0.3);
+  --grid-line: rgba(40,86,216,0.055);
+  --overlay-scrim: rgba(36,42,56,0.42);
+  --contact-bg: #242a38;
+  --contact-text: #f4f6f9;
+  --contact-muted: #c1c8d4;
+  --contact-field-bg: #303748;
+  --contact-field-border: rgba(255,255,255,0.2);
+  --contact-outline: rgba(255,255,255,0.25);
+  --contact-cta-bg: #f2b84b;
+  --contact-cta-text: #242a38;
+  --skill-firmware: #2856d8;
+  --skill-os: #b84f3a;
+  --skill-platforms: #8a5a08;
+  --skill-protocols: #166c98;
+  --skill-validation: #52648c;
+  --skill-domains: #a45134;
+  --gradient-brand: linear-gradient(135deg, #2856d8 0%, #1d3fa8 100%);
+  --gradient-text: linear-gradient(135deg, #2856d8 30%, #d96c57 100%);
 
   /* Surfaces */
-  --bg: #ffffff;
-  --bg-secondary: #f6f8fa;
-  --bg-card: #f8faff;
-  --bg-nav: rgba(255,255,255,0.85);
+  --bg: #f4f6f9;
+  --bg-secondary: #f4f6f9;
+  --bg-tint: #edf1f8;
+  --bg-card: #ffffff;
+  --bg-nav: rgba(244,246,249,0.94);
+  --surface: #ffffff;
 
   /* Text */
-  --text: #1a202c;
-  --text-secondary: #4b5563;
-  --text-muted: #6b7280;
+  --text: #242a38;
+  --text-secondary: #586273;
+  --text-muted: #7b8595;
 
   /* Borders & Shadows */
-  --border: #e2e8f0;
-  --shadow-sm: 0 2px 8px rgba(45,108,223,0.06);
-  --shadow-md: 0 4px 16px rgba(45,108,223,0.10);
-  --shadow-lg: 0 8px 32px rgba(45,108,223,0.15);
+  --border: #dfe4ec;
+  --shadow-sm: 0 2px 8px rgba(36,42,56,0.05);
+  --shadow-md: 0 8px 24px rgba(36,42,56,0.08);
+  --shadow-lg: 0 18px 48px rgba(36,42,56,0.12);
 
   /* Typography */
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   font-weight: 400;
@@ -36,32 +66,52 @@
 }
 
 [data-theme="dark"] {
-  --bg: #23272f;
-  --bg-secondary: #1a1e27;
-  --bg-card: #1e2330;
-  --bg-nav: rgba(35,39,47,0.85);
-  --text: #f6f8fa;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --border: #2d3748;
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.3);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+  --bg: #151a24;
+  --bg-secondary: #151a24;
+  --bg-tint: #1b2230;
+  --bg-card: #202737;
+  --bg-nav: rgba(21,26,36,0.94);
+  --surface: #202737;
+  --text: #f1f3f7;
+  --text-secondary: #c4cad4;
+  --text-muted: #9ba4b3;
+  --border: #343e50;
+  --brand: #9cb2ff;
+  --brand-dark: #c0ccff;
+  --brand-purple: #ff9078;
+  --signal: #ffd178;
+  --signal-soft: rgba(255,209,120,0.2);
+  --coral: #ff9078;
+  --status-surface: rgba(255,209,120,0.12);
+  --status-text: #ffd178;
+  --status-border: rgba(255,209,120,0.35);
+  --text-on-brand: #151a24;
+  --text-on-signal: #242a38;
+  --focus-ring: rgba(156,178,255,0.35);
+  --grid-line: rgba(156,178,255,0.06);
+  --overlay-scrim: rgba(0,0,0,0.55);
+  --contact-bg: #10141d;
+  --contact-text: #f4f6f9;
+  --contact-muted: #c1c8d4;
+  --contact-field-bg: #252d3d;
+  --contact-field-border: rgba(255,255,255,0.2);
+  --contact-outline: rgba(255,255,255,0.25);
+  --contact-cta-bg: #ffd178;
+  --contact-cta-text: #242a38;
+  --skill-firmware: #9cb2ff;
+  --skill-os: #ff9b83;
+  --skill-platforms: #f3c366;
+  --skill-protocols: #70c4e8;
+  --skill-validation: #a7b5dc;
+  --skill-domains: #f0a07f;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.18);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.24);
+  --shadow-lg: 0 18px 48px rgba(0,0,0,0.32);
 }
 
-/* ─── Smooth theme transitions ─── */
-*,
-*::before,
-*::after {
-  transition-property: background-color, color, border-color, box-shadow, opacity;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
-}
-/* Restore transform transitions where needed */
-a, button, .cta-btn, .product-card, .project-card, .skill-circle {
-  transition-property: background-color, color, border-color, box-shadow, transform, opacity;
-  transition-duration: 0.25s;
-  transition-timing-function: ease;
+/* Keep motion on interactive controls; theme surface updates remain immediate. */
+a, button, .cta-btn, .product-card, .project-card, .skill-circle, .skill-card, .hero-pill-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 
 /* ─── Base resets ─── */
@@ -70,15 +120,15 @@ a, button, .cta-btn, .product-card, .project-card, .skill-circle {
 h1, h2, h3, h4 { margin: 0; }
 
 h1 {
-  font-family: 'Sora', 'Inter', system-ui;
+  font-family: var(--font-display);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 h2, h3, h4 {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 a {
@@ -95,10 +145,12 @@ body {
   min-height: 100vh;
   background: var(--bg-secondary);
   color: var(--text);
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
 }
+
+html { scroll-behavior: smooth; }
 
 button {
   border-radius: 8px;

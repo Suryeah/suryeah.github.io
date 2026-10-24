@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { useTheme } from '../components/ThemeContext.jsx';
 
 const educationList = [
   {
@@ -15,11 +14,10 @@ const educationList = [
       'Built discipline in system-level thinking across mechanical, electrical, and software interfaces.',
     ],
     coursework: ['Control Systems', 'Microcontrollers', 'Industrial Automation', 'Robotics', 'Instrumentation'],
-    logo: 'https://media.licdn.com/dms/image/v2/C560BAQE1Qed7IF2Jzg/company-logo_200_200/company-logo_200_200/0/1639066812484?e=1753315200&v=beta&t=fYwbVJansjr-EQUqKuyFiysPZqI3PFiunwki6TShACQ',
   },
 ];
 
-const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
+const EducationTimelineItem = ({ edu, isLast, index }) => (
   <div
     style={{
       display: 'flex',
@@ -44,8 +42,7 @@ const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
       boxSizing: 'border-box',
       height: 78,
     }}>
-      <img src={edu.logo} alt={edu.school + ' Logo'} style={{ width: 90, height: 48, objectFit: 'contain', background: 'white', borderRadius: 0, margin: 0, padding: 0, boxShadow: '0 0 2px #ccc' }} onError={e => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
-      <div style={{ display: 'none', width: 90, height: 48, alignItems: 'center', justifyContent: 'center', background: '#e3e8f0', borderRadius: 8, color: '#2d6cdf', fontWeight: 700, fontSize: 14, boxShadow: '0 0 2px #ccc' }}>CIET</div>
+      <div role="img" aria-label="Coimbatore Institute of Engineering and Technology" style={{ display: 'flex', width: 90, height: 48, alignItems: 'center', justifyContent: 'center', background: 'var(--bg-secondary)', borderRadius: 8, color: 'var(--brand)', fontWeight: 700, fontSize: 14, boxShadow: 'var(--shadow-sm)' }}>CIET</div>
     </div>
     {/* Timeline vertical line and dot */}
     <div style={{
@@ -65,7 +62,7 @@ const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
         top: 0,
         bottom: 0,
         width: 2,
-        background: theme === 'dark' ? '#2d6cdf' : '#174ea6',
+        background: 'var(--brand)',
         opacity: 0.25,
         zIndex: 0,
         transform: 'translateX(-50%)',
@@ -75,12 +72,12 @@ const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
         width: 32,
         height: 32,
         borderRadius: '50%',
-        background: theme === 'dark' ? '#23272f' : '#fff',
-        border: `2.5px solid ${theme === 'dark' ? '#2d6cdf' : '#174ea6'}`,
+        background: 'var(--surface)',
+        border: '2.5px solid var(--brand)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: theme === 'dark' ? '0 0 0 2px #23272f' : '0 0 0 2px #fff',
+        boxShadow: '0 0 0 2px var(--surface)',
         transition: 'background 0.3s, border 0.3s',
         position: 'relative',
         zIndex: 2,
@@ -94,7 +91,7 @@ const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
           top: 0,
           width: 2,
           height: '50%',
-          background: theme === 'dark' ? '#2d6cdf' : '#174ea6',
+          background: 'var(--brand)',
           opacity: 0.25,
           zIndex: 0,
           transform: 'translateX(-50%)',
@@ -107,7 +104,7 @@ const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
           bottom: 0,
           width: 2,
           height: '50%',
-          background: theme === 'dark' ? '#2d6cdf' : '#174ea6',
+          background: 'var(--brand)',
           opacity: 0.25,
           zIndex: 0,
           transform: 'translateX(-50%)',
@@ -116,14 +113,14 @@ const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
     </div>
     {/* Details on the right */}
     <div style={{ flex: 1, marginLeft: 8, paddingBottom: isLast ? 0 : 24, alignSelf: 'flex-start' }}>
-      <div style={{ fontWeight: 700, fontSize: '1.1rem', color: theme === 'dark' ? '#fff' : '#174ea6' }}>{edu.degree}</div>
-      <div style={{ fontWeight: 500, fontSize: '1rem', margin: '2px 0 2px 0', color: theme === 'dark' ? '#b3cdf6' : '#222' }}>{edu.period}</div>
-      <div style={{ fontSize: '0.97rem', color: theme === 'dark' ? '#b3cdf6' : '#555', marginBottom: 2 }}>
+      <div style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text)' }}>{edu.degree}</div>
+      <div style={{ fontWeight: 500, fontSize: '1rem', margin: '2px 0 2px 0', color: 'var(--text-secondary)' }}>{edu.period}</div>
+      <div style={{ fontSize: '0.97rem', color: 'var(--text-muted)', marginBottom: 2 }}>
         {edu.school}<br/>{edu.location}
       </div>
-      <div style={{ fontSize: '0.98rem', color: theme === 'dark' ? '#e0e6f1' : '#333', marginBottom: 0 }}>{edu.field}</div>
-      {edu.summary && <div style={{ fontSize: '0.95rem', color: theme === 'dark' ? '#e0e6f1' : '#333', marginTop: 8, lineHeight: 1.55 }}>{edu.summary}</div>}
-      <ul style={{ margin: '10px 0 8px 18px', padding: 0, color: theme === 'dark' ? '#dbeafe' : '#334155', fontSize: '0.9rem', lineHeight: 1.55 }}>
+      <div style={{ fontSize: '0.98rem', color: 'var(--text)', marginBottom: 0 }}>{edu.field}</div>
+      {edu.summary && <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginTop: 8, lineHeight: 1.55 }}>{edu.summary}</div>}
+      <ul style={{ margin: '10px 0 8px 18px', padding: 0, color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.55 }}>
         {edu.highlights.map((point, i) => <li key={i} style={{ marginBottom: 3 }}>{point}</li>)}
       </ul>
       <div className="tech-tags-row" style={{ marginTop: 0 }}>
@@ -134,18 +131,17 @@ const EducationTimelineItem = ({ edu, isLast, theme, index, total }) => (
 );
 
 const EducationPage = () => {
-  const { theme } = useTheme();
   const sectionRef = useRef();
   useEffect(() => {
     if (sectionRef.current) sectionRef.current.classList.add('visible');
   }, []);
   return (
-    <section ref={sectionRef} className="products-section" style={{ background: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '#222', width: '100vw', minHeight: '100vh', padding: 0, margin: 0 }}>
+    <section id="education" ref={sectionRef} className="products-section" style={{ background: 'var(--bg-secondary)', color: 'var(--text)', width: '100vw', minHeight: '100vh', padding: 0, margin: 0 }}>
       <div className="container" style={{ maxWidth: 800, margin: '0 auto', padding: '2.5rem 1.2rem 2.5rem 1.2rem' }}>
-        <h2 style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', fontWeight: 800, fontSize: '2.2rem', marginBottom: 32, letterSpacing: 0.5 }}>Education</h2>
+        <h2 style={{ color: 'var(--text)', fontWeight: 800, fontSize: '2.2rem', marginBottom: 32, letterSpacing: 0.5 }}>Education</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
           {educationList.map((edu, i, arr) => (
-            <EducationTimelineItem key={edu.school + edu.period} edu={edu} isLast={i === arr.length - 1} theme={theme} index={i} total={arr.length} />
+            <EducationTimelineItem key={edu.school + edu.period} edu={edu} isLast={i === arr.length - 1} index={i} />
           ))}
         </div>
       </div>

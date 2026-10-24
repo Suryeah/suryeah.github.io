@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useTheme } from '../components/ThemeContext.jsx';
+import React, { useEffect, useRef } from 'react';
 import techMahindraLogo from '../assets/tech-mahindra-logo.svg';
 import senpronicsLogo from '../assets/senpronics-logo.svg';
 import mistralLogo from '../assets/mistral-logo.png';
@@ -20,7 +19,6 @@ const experiences = [
     ],
     focus: ['Embedded Linux', 'Python', 'DBus', 'Pytest'],
     current: true,
-    dotColor: '#ef4444',
   },
   {
     company: 'Mistral Solutions Pvt. Ltd',
@@ -30,11 +28,10 @@ const experiences = [
     summary: 'Owned end-to-end SDLC delivery across embedded Linux and TI Sitara/Jacinto programs with device-driver and platform integration work.',
     achievements: [
       'Ported MMCSD device driver for TI AM263x in 3 months and met AM68/AM69 SDK delivery milestones.',
-      'Accelerated Linux test farm integration by 25% for Jacinto processor-based boards.',
+      'Integrated Linux test-farm workflows for Jacinto processor-based boards.',
       'Built board-specific Linux boot binaries and device-tree bring-up flows; recognized with Pride Pack award.',
     ],
     focus: ['AM263/AM68/AM69', 'Linux Drivers', 'Device Tree', 'Automation'],
-    dotColor: '#f97316',
   },
   {
     company: 'NASH Industries (I) Pvt. Ltd.',
@@ -48,7 +45,6 @@ const experiences = [
       'Delivered an RTOS-based product from concept to commercialization within 4 months.',
     ],
     focus: ['EV Charging', 'STM32', 'RTOS', 'Team Leadership'],
-    dotColor: '#eab308',
   },
   {
     company: 'Senpronics',
@@ -58,11 +54,9 @@ const experiences = [
     summary: 'Delivered RTOS-based firmware for mission-critical safety, RF, and IoT products with strong field reliability outcomes.',
     achievements: [
       'Developed MISRA-compliant RTOS firmware for security and defense-oriented embedded systems.',
-      'Improved product performance by 10% and firmware response by 20% through optimization and profiling.',
-      'Contributed to mission-critical defense products and helped drive a 30% increase in revenue/orders.',
+      'Optimized and profiled firmware for safety, RF, and IoT products.',
     ],
     focus: ['MISRA C', 'FreeRTOS', 'IoT Firmware', 'Defense Systems'],
-    dotColor: '#22c55e',
   },
   {
     company: 'Tech Mahindra Pvt. Ltd.',
@@ -76,7 +70,6 @@ const experiences = [
       'Developed communication discipline across support, engineering, and customer interfaces.',
     ],
     focus: ['Troubleshooting', 'RCA', 'Network Systems'],
-    dotColor: '#6366f1',
   },
 ];
 
@@ -87,19 +80,19 @@ const internships = [
     period: 'December 2016 - March 2017 (4 months)',
     location: 'Chennai, Tamil Nadu, India',
     summary: 'Designed and developed working prototype of Regenerative Braking System for Mark-4 Main Battle Tank. Reported to scientists in robotics department of CVRDE.',
+    internship: true,
     achievements: [
       'Developed a working regenerative braking prototype for armored platform context.',
       'Presented findings and prototype behavior to DRDO/CVRDE scientific teams.',
     ],
     focus: ['Defense R&D', 'Prototype Engineering'],
-    dotColor: '#0ea5e9',
   },
 ];
 
 const showcase = [
   {
     title: 'Pride Pack - Outstanding Performance',
-    detail: 'Recognized at Mistral Solutions for excellent teamwork and schedule-critical AM68/AM69 SK SDK release delivery.',
+    detail: 'Recognized at Mistral Solutions for excellent teamwork and schedule-critical AM68/AM69 SDK release delivery.',
     kind: 'Award',
   },
   {
@@ -139,8 +132,9 @@ const companyIcons = {
   ),
 };
 
-const TimelineItem = ({ exp, isLast, theme, index, total }) => (
+const TimelineItem = ({ exp, isLast, index }) => (
   <div
+    className="experience-entry"
     style={{
       display: 'flex',
       alignItems: 'flex-start',
@@ -165,8 +159,8 @@ const TimelineItem = ({ exp, isLast, theme, index, total }) => (
       height: 78, // match timeline dot height
     }}>
       {(companyIcons[exp.company]) ?
-        React.cloneElement(companyIcons[exp.company], { style: { width: 90, height: 48, objectFit: 'contain', background: 'white', borderRadius: 0, margin: 0, padding: 0, boxShadow: '0 0 2px #ccc' } }) :
-        <div style={{ width: 90, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#e3e8f0', borderRadius: 8, color: '#2d6cdf', fontWeight: 700, fontSize: 18, boxShadow: '0 0 2px #ccc' }}>{exp.company.split(' ')[0]}</div>
+        React.cloneElement(companyIcons[exp.company], { style: { width: 90, height: 48, objectFit: 'contain', background: 'var(--surface)', borderRadius: 0, margin: 0, padding: 0, boxShadow: 'var(--shadow-sm)' } }) :
+        <div style={{ width: 90, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-secondary)', borderRadius: 8, color: 'var(--brand)', fontWeight: 700, fontSize: 18, boxShadow: 'var(--shadow-sm)' }}>{exp.company.split(' ')[0]}</div>
       }
     </div>
     {/* Timeline vertical line and logo - perfectly centered in a fixed column */}
@@ -188,7 +182,7 @@ const TimelineItem = ({ exp, isLast, theme, index, total }) => (
         top: 0,
         bottom: 0,
         width: 2,
-        background: theme === 'dark' ? '#2d6cdf' : '#174ea6',
+        background: 'var(--brand)',
         opacity: 0.25,
         zIndex: 0,
         transform: 'translateX(-50%)',
@@ -199,12 +193,12 @@ const TimelineItem = ({ exp, isLast, theme, index, total }) => (
         width: 32,
         height: 32,
         borderRadius: '50%',
-        background: exp.dotColor || (theme === 'dark' ? '#2d6cdf' : '#174ea6'),
-        border: `2.5px solid ${exp.dotColor || (theme === 'dark' ? '#2d6cdf' : '#174ea6')}`,
+        background: 'var(--brand)',
+        border: '2.5px solid var(--brand)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: exp.dotColor ? `0 0 0 3px ${exp.dotColor}33` : (theme === 'dark' ? '0 0 0 2px #23272f' : '0 0 0 2px #fff'),
+        boxShadow: '0 0 0 3px color-mix(in srgb, var(--brand) 20%, transparent)',
         transition: 'background 0.3s, border 0.3s',
         position: 'relative',
         zIndex: 2,
@@ -219,7 +213,7 @@ const TimelineItem = ({ exp, isLast, theme, index, total }) => (
           top: 0,
           width: 2,
           height: '50%',
-          background: theme === 'dark' ? '#2d6cdf' : '#174ea6',
+          background: 'var(--brand)',
           opacity: 0.25,
           zIndex: 0,
           transform: 'translateX(-50%)',
@@ -233,7 +227,7 @@ const TimelineItem = ({ exp, isLast, theme, index, total }) => (
           bottom: 0,
           width: 2,
           height: '50%',
-          background: theme === 'dark' ? '#2d6cdf' : '#174ea6',
+          background: 'var(--brand)',
           opacity: 0.25,
           zIndex: 0,
           transform: 'translateX(-50%)',
@@ -243,13 +237,14 @@ const TimelineItem = ({ exp, isLast, theme, index, total }) => (
     {/* Details on the right */}
     <div style={{ flex: 1, marginLeft: 8, paddingBottom: isLast ? 0 : 24, alignSelf: 'flex-start' }}>
       <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 4 }}>
-        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: theme === 'dark' ? '#fff' : '#174ea6' }}>{exp.title}</span>
+        <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text)' }}>{exp.title}</span>
         {exp.current && <span className="badge-current">● Current</span>}
+        {exp.internship && <span className="badge-internship">Internship</span>}
       </div>
-      <div style={{ fontWeight: 500, fontSize: '1rem', margin: '2px 0 2px 0', color: theme === 'dark' ? '#b3cdf6' : '#222' }}>{exp.period}</div>
-      <div style={{ fontSize: '0.97rem', color: theme === 'dark' ? '#b3cdf6' : '#555', marginBottom: 2 }}>{exp.location}</div>
-      <div style={{ fontSize: '0.98rem', color: theme === 'dark' ? '#e0e6f1' : '#333', marginBottom: 0 }}>{exp.summary}</div>
-      <ul style={{ margin: '10px 0 8px 18px', padding: 0, color: theme === 'dark' ? '#dbeafe' : '#334155', fontSize: '0.9rem', lineHeight: 1.55 }}>
+      <div style={{ fontWeight: 500, fontSize: '1rem', margin: '2px 0 2px 0', color: 'var(--text-secondary)' }}>{exp.period}</div>
+      <div style={{ fontSize: '0.97rem', color: 'var(--text-muted)', marginBottom: 2 }}>{exp.location}</div>
+      <div style={{ fontSize: '0.98rem', color: 'var(--text-secondary)', marginBottom: 0 }}>{exp.summary}</div>
+      <ul style={{ margin: '10px 0 8px 18px', padding: 0, color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.55 }}>
         {exp.achievements.map((point, i) => <li key={i} style={{ marginBottom: 3 }}>{point}</li>)}
       </ul>
       <div className="tech-tags-row" style={{ marginTop: 0 }}>
@@ -278,68 +273,47 @@ if (!document.head.querySelector('#timeline-fadeinup')) {
 }
 
 const ExperiencePage = () => {
-  const { theme } = useTheme();
-  const [activeTab, setActiveTab] = useState('job');
   const sectionRef = useRef();
   useEffect(() => {
     if (sectionRef.current) sectionRef.current.classList.add('visible');
   }, []);
 
-  const tabStyle = (tab) => ({
-    background: activeTab === tab ? (theme === 'dark' ? '#2d6cdf' : '#174ea6') : 'transparent',
-    color: activeTab === tab ? '#fff' : (theme === 'dark' ? '#b3cdf6' : '#174ea6'),
-    border: 'none',
-    borderRadius: 8,
-    padding: '0.5rem 1.5rem',
-    fontWeight: 600,
-    fontSize: '1rem',
-    marginRight: 12,
-    marginBottom: 24,
-    cursor: 'pointer',
-    boxShadow: activeTab === tab ? '0 2px 8px rgba(45,108,223,0.13)' : 'none',
-    transition: 'background 0.2s, color 0.2s',
-  });
-
   return (
-    <section ref={sectionRef} className="products-section" style={{ background: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '#222', width: '100vw', minHeight: '100vh', padding: 0, margin: 0 }}>
+    <section id="experience" ref={sectionRef} className="products-section" style={{ background: 'var(--surface)', color: 'var(--text)', width: '100vw', minHeight: '100vh', padding: 0, margin: 0 }}>
       <div className="container" style={{ maxWidth: 800, margin: '0 auto', padding: '2.5rem 1.2rem 2.5rem 1.2rem' }}>
-        <h2 style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', fontWeight: 800, fontSize: '2.2rem', marginBottom: 32, letterSpacing: 0.5 }}>Experience</h2>
-        <div style={{ display: 'flex', gap: 12, marginBottom: 24, justifyContent: 'center', width: '100%' }}>
-          <button style={tabStyle('job')} onClick={() => setActiveTab('job')}>Job</button>
-          <button style={tabStyle('internship')} onClick={() => setActiveTab('internship')}>Internship</button>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-          {(activeTab === 'job' ? experiences : internships).map((exp, i, arr) => (
-            <TimelineItem key={exp.company + exp.period} exp={exp} isLast={i === arr.length - 1} theme={theme} index={i} total={arr.length} />
+        <h2 style={{ color: 'var(--text)', fontWeight: 800, fontSize: '2.2rem', marginBottom: 32, letterSpacing: 0.5 }}>Experience</h2>
+        <div className="experience-timeline" style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+          {[...experiences, ...internships].map((exp, i, entries) => (
+            <TimelineItem key={exp.company + exp.period} exp={exp} isLast={i === entries.length - 1} index={i} />
           ))}
         </div>
 
-        <div style={{
+        <div className="experience-awards" style={{
           marginTop: 26,
           padding: '1rem',
           borderRadius: 14,
-          border: theme === 'dark' ? '1px solid rgba(147,197,253,0.22)' : '1px solid rgba(23,78,166,0.18)',
-          background: theme === 'dark' ? 'rgba(30,41,59,0.45)' : 'rgba(248,250,255,0.8)',
+          border: '1px solid var(--border)',
+          background: 'var(--bg-secondary)',
         }}>
-          <h3 style={{ marginTop: 0, marginBottom: 10, color: theme === 'dark' ? '#bfdbfe' : '#1d4ed8' }}>Awards & IP</h3>
+          <h3 style={{ marginTop: 0, marginBottom: 10, color: 'var(--text)' }}>Awards & IP</h3>
           {showcase.map((item, idx) => (
             <div key={idx} style={{ marginBottom: idx === showcase.length - 1 ? 0 : 10 }}>
-              <div style={{ fontWeight: 700, color: theme === 'dark' ? '#e2e8f0' : '#0f172a' }}>
-                {item.title} <span style={{ fontWeight: 600, color: theme === 'dark' ? '#93c5fd' : '#2563eb' }}>({item.kind})</span>
+              <div style={{ fontWeight: 700, color: 'var(--text)' }}>
+                {item.title} <span style={{ fontWeight: 600, color: 'var(--brand)' }}>({item.kind})</span>
               </div>
-              <div style={{ fontSize: '0.92rem', color: theme === 'dark' ? '#cbd5e1' : '#475569' }}>{item.detail}</div>
+              <div style={{ fontSize: '0.92rem', color: 'var(--text-secondary)' }}>{item.detail}</div>
             </div>
           ))}
         </div>
 
-        <div style={{
+        <div className="experience-languages" style={{
           marginTop: 16,
           padding: '1rem',
           borderRadius: 14,
-          border: theme === 'dark' ? '1px solid rgba(148,163,184,0.25)' : '1px solid rgba(148,163,184,0.28)',
-          background: theme === 'dark' ? 'rgba(15,23,42,0.42)' : 'rgba(241,245,249,0.72)',
+          border: '1px solid var(--border)',
+          background: 'var(--bg-secondary)',
         }}>
-          <h3 style={{ marginTop: 0, marginBottom: 10, color: theme === 'dark' ? '#bfdbfe' : '#1d4ed8' }}>Languages</h3>
+          <h3 style={{ marginTop: 0, marginBottom: 10, color: 'var(--text)' }}>Languages</h3>
           <div className="tech-tags-row" style={{ marginTop: 0 }}>
             {languageSkills.map((lang, idx) => <span key={idx} className="tech-tag">{lang}</span>)}
           </div>

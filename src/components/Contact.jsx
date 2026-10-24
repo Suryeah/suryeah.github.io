@@ -1,64 +1,54 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useTheme } from './ThemeContext.jsx';
-import { Link } from 'react-router-dom';
-
-function useIsSmallScreen(breakpoint = 900) {
-  const [isSmall, setIsSmall] = useState(() => typeof window !== 'undefined' ? window.innerWidth <= breakpoint : false);
-  useEffect(() => {
-    function handleResize() {
-      setIsSmall(window.innerWidth <= breakpoint);
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [breakpoint]);
-  return isSmall;
-}
+import React, { useEffect, useRef } from 'react';
 
 const CONTACT_LINKS = [
   {
     href: 'mailto:surya_24@live.com',
     title: 'Email',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d6cdf" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
     ),
   },
   {
     href: 'tel:+918870858022',
     title: 'Phone',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d6cdf" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 22 16.92z"/></svg>
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 22 16.92z"/></svg>
     ),
   },
   {
     href: 'https://www.linkedin.com/in/surya1412',
     title: 'LinkedIn',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d6cdf" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><line x1="16" y1="11" x2="16" y2="16"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="8" y1="11" x2="8" y2="16"/><circle cx="12" cy="7" r="1"/></svg>
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><line x1="16" y1="11" x2="16" y2="16"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="8" y1="11" x2="8" y2="16"/><circle cx="12" cy="7" r="1"/></svg>
     ),
   },
   {
     href: 'https://github.com/Suryeah',
     title: 'GitHub',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d6cdf" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85 0 1.33-.01 2.4-.01 2.73 0 .27.16.58.67.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85 0 1.33-.01 2.4-.01 2.73 0 .27.16.58.67.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
     ),
   },
   {
     href: 'https://orcid.org/0009-0005-2841-869X',
     title: 'ORCID',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d6cdf" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="#2d6cdf">iD</text></svg>
+      icon: (
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="currentColor">iD</text></svg>
     ),
   },
 ];
 
 const Contact = () => {
-  const { theme } = useTheme();
-  const isSmallScreen = useIsSmallScreen(900); // Show breadcrumbs if screen <= 900px
-  const breadcrumbs = [
-    { label: 'Home', to: '/' },
-    { label: 'Build Real Stuff', to: '/catchme' },
-  ];
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    window.location.href = `mailto:surya_24@live.com?subject=${subject}&body=${body}`;
+  };
   const sectionRef = useRef();
   useEffect(() => {
     if (sectionRef.current) sectionRef.current.classList.add('visible');
@@ -70,8 +60,8 @@ const Contact = () => {
       id="contact"
       className="products-section"
       style={{
-        background: theme === 'dark' ? '#23272f' : '#fff',
-        color: theme === 'dark' ? '#fff' : '#222',
+        background: 'var(--surface)',
+        color: 'var(--text)',
         width: '100vw',
         minHeight: '100vh',
         padding: 0,
@@ -106,22 +96,9 @@ const Contact = () => {
             alignItems: 'center',
           }}
         >
-          {/* Breadcrumbs for small screens */}
-          {isSmallScreen && (
-            <nav aria-label="breadcrumb" className="breadcrumbs-nav" style={{ width: '100%', marginBottom: '1.2rem' }}>
-              <ol style={{ display: 'flex', flexWrap: 'wrap', listStyle: 'none', padding: 0, margin: 0, fontSize: '1rem', color: theme === 'dark' ? '#b3cdf6' : '#174ea6' }}>
-                {breadcrumbs.map((crumb, idx) => (
-                  <li key={crumb.to} style={{ display: 'flex', alignItems: 'center' }}>
-                    <Link to={crumb.to} style={{ color: theme === 'dark' ? '#b3cdf6' : '#174ea6', textDecoration: 'none', fontWeight: 600 }}>{crumb.label}</Link>
-                    {idx < breadcrumbs.length - 1 && <span style={{ margin: '0 0.5rem' }}>/</span>}
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          )}
           <h2
             style={{
-              color: theme === 'dark' ? '#b3cdf6' : '#174ea6',
+              color: 'var(--text)',
               textAlign: 'center',
               fontSize: '2rem',
               marginBottom: '0.75rem',
@@ -132,12 +109,12 @@ const Contact = () => {
           <p style={{
             marginTop: 0,
             marginBottom: '1rem',
-            color: theme === 'dark' ? '#cbd5e1' : '#475569',
+            color: 'var(--text-secondary)',
             fontSize: '0.95rem',
             lineHeight: 1.6,
             textAlign: 'center',
           }}>
-            Open to embedded firmware roles, edge-AI collaborations, and engineering consulting discussions.
+            Open to embedded firmware and Embedded Linux roles, with a focus on real-time systems and board bring-up.
           </p>
           <div className="tech-tags-row" style={{ justifyContent: 'center', marginTop: 0, marginBottom: '0.85rem' }}>
             <span className="case-chip">Open to relocation</span>
@@ -152,14 +129,14 @@ const Contact = () => {
             justifyContent: 'center',
             marginBottom: '1rem',
           }}>
-            <a href="https://suryeah.github.io/datasheet/Surya.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">Download Resume</a>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">Download Resume</a>
             <a href="mailto:surya_24@live.com?subject=Hiring%20Discussion" className="hero-pill-btn secondary">Hiring Discussion</a>
             <a href="mailto:surya_24@live.com?subject=Collaboration%20Request" className="hero-pill-btn secondary">Collaboration</a>
             <a href="mailto:surya_24@live.com?subject=Research%20Query" className="hero-pill-btn secondary">Research Query</a>
           </div>
           <form
             className="contact-form"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
             style={{
               width: '100%',
               display: 'flex',
@@ -179,12 +156,16 @@ const Contact = () => {
                 type="text"
                 placeholder="Your Name"
                 name="name"
+                autoComplete="name"
+                required
                 style={{ flex: 1, minWidth: 0 }}
               />
               <input
                 type="email"
                 placeholder="Your Email"
                 name="email"
+                autoComplete="email"
+                required
                 style={{ flex: 1, minWidth: 0 }}
               />
             </div>
@@ -197,7 +178,7 @@ const Contact = () => {
             <p style={{
               margin: '-0.35rem 0 0 0',
               fontSize: '0.82rem',
-              color: theme === 'dark' ? '#94a3b8' : '#64748b',
+              color: 'var(--text-muted)',
               textAlign: 'left',
             }}>
               Typical response time: within 24-48 hours.
@@ -209,8 +190,8 @@ const Contact = () => {
                 padding: '0.8rem',
                 fontSize: '1.1rem',
                 fontWeight: 600,
-                background: theme === 'dark' ? '#2d6cdf' : '#174ea6',
-                color: '#fff',
+                background: 'var(--brand)',
+                color: 'var(--text-on-brand)',
                 border: 'none',
                 borderRadius: 6,
                 cursor: 'pointer',
@@ -218,7 +199,7 @@ const Contact = () => {
                 transition: 'background 0.2s',
               }}
             >
-              Send Message Request
+              Open Email to Send
             </button>
           </form>
           <div
@@ -235,9 +216,10 @@ const Contact = () => {
               <a
                 key={idx}
                 href={link.href}
+                className="contact-social-link"
                 target={link.href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                style={{ fontSize: '1.7rem', display: 'flex', alignItems: 'center' }}
+                style={{ fontSize: '1.7rem', display: 'flex', alignItems: 'center', color: 'var(--signal)' }}
                 title={link.title}
               >
                 {link.icon}
@@ -248,38 +230,20 @@ const Contact = () => {
       </div>
       {/* Responsive styles for mobile */}
       <style>{`
-        @media (max-width: 900px) {
-          .breadcrumbs-nav {
-            display: block !important;
-          }
-          nav[role="navigation"], .main-navbar, .navbar, .desktop-nav {
-            display: none !important;
-          }
-        }
-        @media (min-width: 901px) {
-          .breadcrumbs-nav {
-            display: none !important;
-          }
-        }
         @media (max-width: 700px) {
-          .container {
+          #contact .container {
             padding: 0 !important;
           }
-          .contact-form > div {
+          #contact .contact-form > div {
             flex-direction: column !important;
-            gap: 0.7rem !important;
+                  style={{ fontSize: '1.7rem', display: 'flex', alignItems: 'center', color: 'var(--signal)' }}
           }
-          .contact-form input {
+          #contact .contact-form input {
             width: 100% !important;
           }
-          .contact-form button {
+          #contact .contact-form button {
             font-size: 1rem !important;
             padding: 0.7rem !important;
-          }
-        }
-        @media (max-width: 400px) {
-          h2 {
-            font-size: 1.2rem !important;
           }
         }
       `}</style>

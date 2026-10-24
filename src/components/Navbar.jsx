@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useTheme } from './ThemeContext.jsx';
+import { Link } from 'react-router-dom';
+import { useTheme } from './ThemeContext.js';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
   const menuRef = useRef();
 
   useEffect(() => {
@@ -36,22 +34,20 @@ const Navbar = () => {
   }, [menuOpen]);
 
   const navLinks = [
-    { label: 'Home', to: '/' },
-    { label: 'Products', to: '/products' },
-    { label: 'Projects', to: '/projects' },
-    { label: 'Education', to: '/education' },
-    { label: 'Experience', to: '/experience' },
-    { label: 'Build Real Stuff', to: '/catchme' },
+    { label: 'Home', to: '/#hero' },
+    { label: 'Work', to: '/#experience' },
+    { label: 'Projects', to: '/#projects' },
+    { label: 'Skills', to: '/#skills' },
+    { label: 'Products', to: '/#products' },
+    { label: 'Education', to: '/#education' },
+    { label: 'Contact', to: '/#contact' },
   ];
 
-  const navBg = scrolled
-    ? theme === 'dark' ? 'rgba(35,39,47,0.85)' : 'rgba(255,255,255,0.85)'
-    : theme === 'dark' ? '#23272f' : '#fff';
-  const navText = theme === 'dark' ? '#e2e8f0' : '#1f2937';
-  const navAccent = theme === 'dark' ? '#93c5fd' : '#174ea6';
+  const navBg = 'var(--bg-nav)';
+  const navAccent = 'var(--brand)';
 
   return (
-    <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`} style={{ background: navBg, color: theme === 'dark' ? '#fff' : '#222' }}>
+    <nav className={`navbar${scrolled ? ' navbar-scrolled' : ''}`} style={{ background: navBg, color: 'var(--text)' }}>
       <div className="container" style={{
         width: '100%',
         maxWidth: '1200px',
@@ -65,6 +61,13 @@ const Navbar = () => {
         boxSizing: 'border-box',
         overflowX: 'hidden',
       }}>
+        <Link to="/#hero" className="nav-brand" onClick={() => setMenuOpen(false)}>
+          <span className="nav-brand-mark">SV</span>
+          <span className="nav-brand-copy">
+            <strong>Surya Vardhan</strong>
+            <small>Embedded Systems</small>
+          </span>
+        </Link>
         {isMobile ? (
           <div ref={menuRef} style={{ position: 'relative', marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
             <button
@@ -86,15 +89,15 @@ const Navbar = () => {
               </span>
             </button>
             {menuOpen && (
-              <div style={{
+              <div className="mobile-nav-panel" style={{
                 position: 'fixed',
                 top: 0,
                 right: 0,
                 width: '80vw',
                 maxWidth: 320,
                 height: '100vh',
-                background: theme === 'dark' ? '#23272f' : '#fff',
-                boxShadow: '-4px 0 24px rgba(0,0,0,0.13)',
+                background: 'var(--surface)',
+                boxShadow: 'var(--shadow-lg)',
                 zIndex: 300,
                 display: 'flex',
                 flexDirection: 'column',
@@ -131,17 +134,18 @@ const Navbar = () => {
                 }}>
                   {navLinks.map((link) => (
                     <li key={link.to} style={{ width: '100%' }}>
-                      <span
-                        style={{ color: navText, fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer', display: 'block', padding: '0.5rem 0' }}
-                        onClick={() => { setMenuOpen(false); navigate(link.to); }}
+                      <Link
+                        to={link.to}
+                        onClick={() => setMenuOpen(false)}
+                        className="mobile-nav-link"
                       >
                         {link.label}
-                      </span>
+                      </Link>
                     </li>
                   ))}
                   <li style={{ width: '100%' }}>
                     <a
-                      href="https://suryeah.github.io/datasheet/Surya.pdf"
+                      href="/resume.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setMenuOpen(false)}
@@ -158,11 +162,11 @@ const Navbar = () => {
                     >
                       {theme === 'dark' ? (
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={navAccent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
-                          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z" fill="#23272f"/>
+                          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z" fill="var(--surface)"/>
                         </svg>
                       ) : (
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={navAccent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
-                          <circle cx="12" cy="12" r="5" fill="#f6f8fa"/>
+                          <circle cx="12" cy="12" r="5" fill="var(--surface)"/>
                           <g stroke={navAccent}>
                             <line x1="12" y1="1" x2="12" y2="3" />
                             <line x1="12" y1="21" x2="12" y2="23" />
@@ -183,6 +187,7 @@ const Navbar = () => {
             {/* Overlay background for menu */}
             {menuOpen && (
               <div
+                className="mobile-nav-backdrop"
                 onClick={() => setMenuOpen(false)}
                 style={{
                   position: 'fixed',
@@ -190,7 +195,7 @@ const Navbar = () => {
                   left: 0,
                   width: '100vw',
                   height: '100vh',
-                  background: 'rgba(0,0,0,0.18)',
+                  background: 'var(--overlay-scrim)',
                   zIndex: 200,
                 }}
               />
@@ -207,17 +212,14 @@ const Navbar = () => {
           <ul className="nav-links" style={{ display: 'flex', gap: '0.9rem', margin: 0, padding: '0 10px', listStyle: 'none', alignItems: 'center', width: '100%', justifyContent: 'space-evenly' }}>
             {navLinks.map((link) => (
               <li key={link.to} style={{ listStyle: 'none' }}>
-                <span
-                  style={{ color: navText, fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer' }}
-                  onClick={() => navigate(link.to)}
-                >
+                <Link to={link.to} className="desktop-nav-link">
                   {link.label}
-                </span>
+                </Link>
               </li>
             ))}
             <li style={{ listStyle: 'none' }}>
               <a
-                href="https://suryeah.github.io/datasheet/Surya.pdf"
+                href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: navAccent, fontWeight: 700, fontSize: '1.05rem', textDecoration: 'none' }}
@@ -233,11 +235,11 @@ const Navbar = () => {
               >
                 {theme === 'dark' ? (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={navAccent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z" fill="#23272f"/>
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z" fill="var(--surface)"/>
                   </svg>
                 ) : (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={navAccent} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ border: 'none', outline: 'none', boxShadow: 'none' }}>
-                    <circle cx="12" cy="12" r="5" fill="#f6f8fa"/>
+                    <circle cx="12" cy="12" r="5" fill="var(--surface)"/>
                     <g stroke={navAccent}>
                       <line x1="12" y1="1" x2="12" y2="3" />
                       <line x1="12" y1="21" x2="12" y2="23" />

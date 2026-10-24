@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-
-const ThemeContext = createContext();
+import React, { useEffect, useState } from 'react';
+import { ThemeContext } from './ThemeContext.js';
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
@@ -10,27 +9,8 @@ export const ThemeProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    // Set theme on <html> and <body> for full coverage
     document.documentElement.setAttribute('data-theme', theme);
-    document.body.setAttribute('data-theme', theme);
     window.localStorage.setItem('theme', theme);
-    // Set background and color directly for instant effect
-    document.body.style.background = theme === 'dark' ? '#181a1b' : '#f6f8fa';
-    document.body.style.color = theme === 'dark' ? '#f6f8fa' : '#1a202c';
-    // Also update all section backgrounds/colors
-    document.querySelectorAll('section').forEach(sec => {
-      sec.style.background = theme === 'dark' ? '#23272f' : '#fff';
-      sec.style.color = theme === 'dark' ? '#f6f8fa' : '#1a202c';
-    });
-    // Update navbar background and color
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-      navbar.style.background = theme === 'dark' ? '#23272f' : '#fff';
-      navbar.style.color = theme === 'dark' ? '#f6f8fa' : '#1a202c';
-      navbar.querySelectorAll('a, button, span').forEach(el => {
-        el.style.color = theme === 'dark' ? '#f6f8fa' : '#1a202c';
-      });
-    }
   }, [theme]);
 
   const toggleTheme = () => {
@@ -44,6 +24,4 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-export const useTheme = () => useContext(ThemeContext);
-
-export default ThemeContext;
+export default ThemeProvider;
