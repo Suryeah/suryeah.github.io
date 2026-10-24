@@ -2,6 +2,15 @@ import React, { useEffect, useRef } from 'react';
 
 const PROJECTS = [
   {
+    name: 'TI AM64x Inter-core IPC for ADC Data Transfer',
+    challenge: 'Move ADC data reliably between R5 and A53 cores on a TI AM64x platform.',
+    architecture: 'Inter-core IPC path connecting R5 and A53 with an ADC data handoff.',
+    outcome: 'Built an inter-core communication path for ADC data transfer.',
+    role: 'IPC bring-up and validation',
+    tags: ['TI AM64x', 'R5', 'A53', 'IPC', 'ADC'],
+    constraints: ['Cross-core messaging', 'Data integrity'],
+  },
+  {
     name: 'AD7771 Wireless DAQ',
     challenge: 'Build reliable high-rate vibration acquisition with wireless backhaul for field deployment.',
     architecture: 'AD7771 front-end sampled at 8 KSPS on Teensy 3.6; ESP32 handles TCP telemetry.',
@@ -81,6 +90,42 @@ const PROJECTS = [
     tags: ['Nuvoton', 'N76E003', 'ADC', 'OLED', 'I2C'],
     constraints: ['Memory limits', 'Peripheral timing'],
   },
+  {
+    name: 'Naive Bayes Estimator on ARM Cortex-M0',
+    challenge: 'Implement a compact classifier on a resource-constrained microcontroller.',
+    architecture: 'Bare-metal C implementation targeting an ARM Cortex-M0.',
+    outcome: 'Built a lightweight classifier prototype for a constrained MCU.',
+    role: 'Classifier implementation and MCU integration',
+    tags: ['ARM Cortex-M0', 'Bare-Metal C', 'Naive Bayes'],
+    constraints: ['Code size', 'Compute limits'],
+  },
+  {
+    name: 'TCP Graph Plotter',
+    challenge: 'Visualize incoming sensor data over a TCP stream.',
+    architecture: 'TCP data receiver paired with a live plotting workflow.',
+    outcome: 'Built a plotting tool for streamed measurement data.',
+    role: 'Data streaming and visualization',
+    tags: ['TCP', 'Data Visualization', 'Plotting'],
+    constraints: ['Update latency', 'Stream handling'],
+  },
+  {
+    name: 'High-Speed Data Transfer over TCP on ESP32',
+    challenge: 'Transfer high-rate data reliably over TCP on an ESP32.',
+    architecture: 'ESP32 network transport tuned for high-throughput data transfer.',
+    outcome: 'Built and validated a high-speed embedded TCP transfer path.',
+    role: 'Transport optimization and validation',
+    tags: ['ESP32', 'TCP', 'Data Transfer'],
+    constraints: ['Throughput', 'Network stability'],
+  },
+  {
+    name: 'STM32 Human-Machine Interface',
+    challenge: 'Create an embedded user interface on STM32 hardware.',
+    architecture: 'STM32 firmware handling display output and user input.',
+    outcome: 'Built an MCU-based human-machine interface.',
+    role: 'UI firmware and hardware integration',
+    tags: ['STM32', 'HMI', 'Embedded UI'],
+    constraints: ['Display timing', 'User interaction'],
+  },
 ];
 
 const Projects = () => {
@@ -139,18 +184,18 @@ const Projects = () => {
         <div className="additional-projects">
           <h3 style={{ color: 'var(--text)' }}>More Projects</h3>
           <div className="additional-projects-list">
-            {PROJECTS.slice(3).map((project) => (
-              <a
-                key={project.name}
-                className="additional-project-link"
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>{project.name}</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-            ))}
+            {PROJECTS.slice(3).map((project) => {
+              const content = <><span>{project.name}</span>{project.github && <span aria-hidden="true">↗</span>}</>;
+              return project.github ? (
+                <a key={project.name} className="additional-project-link" href={project.github} target="_blank" rel="noopener noreferrer">
+                  {content}
+                </a>
+              ) : (
+                <div key={project.name} className="additional-project-link">
+                  {content}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -7,11 +7,11 @@ import drdoLogo from '../assets/drdo-logo.png';
 
 const experiences = [
   {
-    company: 'Robert Bosch',
-    title: 'Senior Software Engineer',
+    company: 'Bosch Global Software Technologies',
+    title: 'Senior Engineer',
     period: 'Dec 2023 - Present',
-    location: 'Bangalore Urban, Karnataka, India',
-    summary: 'Developing next-gen Bosch home appliance electronics with Embedded Linux and Python application stacks.',
+    location: 'Bengaluru, Karnataka, India',
+    summary: 'Developing Python applications and Embedded Linux software for Bosch home appliance electronics.',
     achievements: [
       'Built Python applications for Embedded Linux platforms, including DBus IPC between multiple applications.',
       'Developed battery monitoring logic for SOC and SOH estimation in appliance-class systems.',
@@ -21,11 +21,11 @@ const experiences = [
     current: true,
   },
   {
-    company: 'Mistral Solutions Pvt. Ltd',
-    title: 'Senior Software Developer',
+    company: 'Mistral Solutions',
+    title: 'Senior Software Design Engineer',
     period: 'Apr 2022 - Dec 2023',
     location: 'Bengaluru, Karnataka, India',
-    summary: 'Owned end-to-end SDLC delivery across embedded Linux and TI Sitara/Jacinto programs with device-driver and platform integration work.',
+    summary: 'Owned end-to-end delivery across embedded Linux and TI Sitara/Jacinto programs with device-driver and platform integration work.',
     achievements: [
       'Ported MMCSD device driver for TI AM263x in 3 months and met AM68/AM69 SDK delivery milestones.',
       'Integrated Linux test-farm workflows for Jacinto processor-based boards.',
@@ -34,8 +34,8 @@ const experiences = [
     focus: ['AM263/AM68/AM69', 'Linux Drivers', 'Device Tree', 'Automation'],
   },
   {
-    company: 'NASH Industries (I) Pvt. Ltd.',
-    title: 'Embedded Engineer',
+    company: 'Nash Tech Labs',
+    title: 'Embedded Software Engineer',
     period: 'Jul 2021 - Feb 2022',
     location: 'Bengaluru, Karnataka, India',
     summary: 'Led firmware and integration for EV charging and consumer electronics, balancing speed with production-grade execution.',
@@ -48,18 +48,20 @@ const experiences = [
   },
   {
     company: 'Senpronics',
-    title: 'Embedded Engineer',
-    period: 'Oct 2019 - Jul 2021',
+    title: 'Senior Embedded Engineer',
+    period: 'Aug 2019 - Jun 2021',
     location: 'Bengaluru, Karnataka, India',
-    summary: 'Delivered RTOS-based firmware for mission-critical safety, RF, and IoT products with strong field reliability outcomes.',
+    summary: 'Delivered RTOS-based C firmware for security devices, IoT products, and LabVIEW-based Windows tooling.',
     achievements: [
       'Developed MISRA-compliant RTOS firmware for security and defense-oriented embedded systems.',
       'Optimized and profiled firmware for safety, RF, and IoT products.',
+      'Built LabVIEW software for serial communication and monitoring.',
+      'Contributed to Wi-Fi transmission and RF signal-generator product development.',
     ],
-    focus: ['MISRA C', 'FreeRTOS', 'IoT Firmware', 'Defense Systems'],
+    focus: ['MISRA C', 'RTOS', 'LabVIEW', 'IoT Firmware'],
   },
   {
-    company: 'Tech Mahindra Pvt. Ltd.',
+    company: 'Tech Mahindra',
     title: 'Tech Support Engineer',
     period: 'Nov 2017 - Jan 2019',
     location: 'Chennai Area, India',
@@ -112,19 +114,19 @@ const languageSkills = [
 ];
 
 const companyIcons = {
-  'Robert Bosch': (
+  'Bosch Global Software Technologies': (
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg" alt="Robert Bosch Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
-  'Mistral Solutions Pvt. Ltd': (
+  'Mistral Solutions': (
     <img src={mistralLogo} alt="Mistral Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
-  'NASH Industries (I) Pvt. Ltd.': (
+  'Nash Tech Labs': (
     <img src={nashLogo} alt="NASH Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
   'Senpronics': (
     <img src={senpronicsLogo} alt="Senpronics Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
-  'Tech Mahindra Pvt. Ltd.': (
+  'Tech Mahindra': (
     <img src={techMahindraLogo} alt="Tech Mahindra Logo" style={{ width: 28, height: 28, objectFit: 'contain', background: 'white', borderRadius: '50%' }} />
   ),
   'Defence Research and Development Organisation (DRDO)': (

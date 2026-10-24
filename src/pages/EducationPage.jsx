@@ -2,6 +2,20 @@ import React, { useEffect, useRef } from 'react';
 
 const educationList = [
   {
+    school: 'Vector India Org',
+    degree: 'Certification',
+    field: 'Advanced Embedded Systems',
+    period: 'Jul 2019',
+    location: 'Chennai, Tamil Nadu, India',
+    summary: 'Completed advanced embedded systems training focused on RTOS-based development and practical firmware engineering.',
+    highlights: [
+      'Built hands-on fluency with embedded C, RTOS concepts, and low-level debugging.',
+      'Strengthened system design skills for embedded product development.',
+    ],
+    coursework: ['RTOS', 'Embedded C', 'Firmware Debugging'],
+    logoLabel: 'VI',
+  },
+  {
     school: 'Coimbatore Institute of Engineering and Technology',
     degree: 'Bachelor of Engineering (B.E.)',
     field: 'Mechatronics, Robotics, and Automation Engineering',
@@ -14,6 +28,7 @@ const educationList = [
       'Built discipline in system-level thinking across mechanical, electrical, and software interfaces.',
     ],
     coursework: ['Control Systems', 'Microcontrollers', 'Industrial Automation', 'Robotics', 'Instrumentation'],
+    logoLabel: 'CIET',
   },
 ];
 
@@ -42,7 +57,7 @@ const EducationTimelineItem = ({ edu, isLast, index }) => (
       boxSizing: 'border-box',
       height: 78,
     }}>
-      <div role="img" aria-label="Coimbatore Institute of Engineering and Technology" style={{ display: 'flex', width: 90, height: 48, alignItems: 'center', justifyContent: 'center', background: 'var(--bg-secondary)', borderRadius: 8, color: 'var(--brand)', fontWeight: 700, fontSize: 14, boxShadow: 'var(--shadow-sm)' }}>CIET</div>
+      <div role="img" aria-label={`${edu.school} logo`} style={{ display: 'flex', width: 90, height: 48, alignItems: 'center', justifyContent: 'center', background: 'var(--bg-secondary)', borderRadius: 8, color: 'var(--brand)', fontWeight: 700, fontSize: 14, boxShadow: 'var(--shadow-sm)' }}>{edu.logoLabel}</div>
     </div>
     {/* Timeline vertical line and dot */}
     <div style={{
@@ -78,7 +93,6 @@ const EducationTimelineItem = ({ edu, isLast, index }) => (
         alignItems: 'center',
         justifyContent: 'center',
         boxShadow: '0 0 0 2px var(--surface)',
-        transition: 'background 0.3s, border 0.3s',
         position: 'relative',
         zIndex: 2,
         marginTop: 0,

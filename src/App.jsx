@@ -6,8 +6,8 @@ import Projects from './components/Projects';
 import Products from './components/Products';
 import Contact from './components/Contact';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import EducationPage from './pages/EducationPage';
-import ExperiencePage from './pages/ExperiencePage';
+import Education from './components/Education';
+import Experience from './components/Experience';
 import './App.css';
 import ThemeProvider from './components/ThemeContext.jsx';
 
@@ -76,10 +76,10 @@ function PortfolioPage() {
     <main className="portfolio-page">
       <Hero />
       <Projects />
-      <ExperiencePage />
+      <Experience />
       <Skills />
       <Products />
-      <EducationPage />
+      <Education />
       <Contact />
     </main>
   );

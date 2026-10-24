@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 const PRODUCTS = [
   {
-    name: 'Radio Frequency Signal Generator',
+    name: 'Real-Time Acceleration Plotter',
     icon: '📡',
     description: 'RTAP-335®',
     summary: 'Embedded RF signal-generation platform for bench and field test workflows.',
@@ -19,18 +19,18 @@ const PRODUCTS = [
     tags: ['RF433', 'Control Systems', 'Embedded C'],
   },
   {
-    name: 'EMD-1202®',
+    name: 'Earthquake Detector',
     icon: '⚡',
     description: 'EMD-1202®',
-    summary: 'Embedded product developed for dependable field operation.',
+    summary: 'Embedded earthquake detection product designed for dependable field operation.',
     role: 'Firmware development + productization support',
     tags: ['Product Engineering', 'Firmware', 'Field Reliability'],
   },
   {
     name: 'Portable Seismic DAQ',
     icon: '🌐',
-    description: 'Portable Seismic DAQ',
-    summary: 'Portable seismic and vibration acquisition concept with sampling, logging, and data transfer.',
+    description: 'PS-DAQ®',
+    summary: 'Portable seismic data acquisition product with embedded sampling, logging, and data transfer.',
     role: 'Acquisition firmware + systems integration',
     tags: ['Seismic', 'DAQ', 'Signal Processing'],
   },
@@ -41,6 +41,14 @@ const PRODUCTS = [
     summary: 'Sensing, telemetry, and firmware for long-term structural monitoring.',
     role: 'Embedded solution engineering',
     tags: ['SHM', 'IoT Sensing', 'Edge Monitoring'],
+  },
+  {
+    name: 'Devantech ETH008-B Driver',
+    icon: '🔌',
+    description: 'Ethernet relay driver',
+    summary: 'Embedded driver integration for Ethernet-controlled relay I/O.',
+    role: 'Driver integration',
+    tags: ['Ethernet', 'Relay Control', 'Embedded Driver'],
   },
 ];
 

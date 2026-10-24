@@ -129,7 +129,7 @@ const Hero = () => {
             border: '1px solid var(--status-border)',
           }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--signal)', boxShadow: '0 0 0 4px var(--signal-soft)' }} />
-            Currently at Robert Bosch Engineering
+            Currently at Bosch Global Software Technologies
           </div>
 
           <h1 style={{
