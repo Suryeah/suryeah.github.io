@@ -5,7 +5,7 @@ const PRODUCTS = [
     name: 'Real-Time Acceleration Plotter',
     icon: '📡',
     description: 'RTAP-335®',
-    summary: 'Embedded RF signal-generation platform for bench and field test workflows.',
+    summary: 'Real-time acceleration acquisition and plotting for motion-data visualization.',
     role: 'Product firmware + validation support',
     tags: ['RF', 'Embedded Firmware', 'Test Instrumentation'],
   },
@@ -20,6 +20,7 @@ const PRODUCTS = [
   },
   {
     name: 'Earthquake Detector',
+    github: 'https://github.com/Suryeah/Earthquake_Detector',
     icon: '⚡',
     description: 'EMD-1202®',
     summary: 'Embedded earthquake detection product designed for dependable field operation.',

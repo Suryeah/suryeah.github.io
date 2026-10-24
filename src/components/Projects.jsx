@@ -21,6 +21,16 @@ const PROJECTS = [
     constraints: ['Real-time sampling', 'Wireless reliability'],
   },
   {
+    name: 'EV Battery SoC Companion',
+    challenge: 'Make a vehicle battery state-of-charge reading easy to check from a mobile app and widgets.',
+    architecture: 'SwiftUI app uses CoreBluetooth to query Tata Nexon EV SoC over UDS, persists the latest reading, and provides WidgetKit and watchOS targets.',
+    outcome: 'Implements BLE scanning, reconnect handling, and periodic SoC polling.',
+    role: 'iOS app and BLE/UDS integration',
+    github: 'https://github.com/Suryeah/CarStatsWidget',
+    tags: ['SwiftUI', 'CoreBluetooth', 'UDS', 'WidgetKit', 'watchOS'],
+    constraints: ['BLE connectivity', 'Background refresh'],
+  },
+  {
     name: 'ESP32 Remote Vibration DAQ',
     challenge: 'Acquire and stream remote analog vibration signals over unstable wireless links.',
     architecture: 'ESP32 sampling + remote transmission path tuned for periodic sensor payloads.',
@@ -125,6 +135,21 @@ const PROJECTS = [
     role: 'UI firmware and hardware integration',
     tags: ['STM32', 'HMI', 'Embedded UI'],
     constraints: ['Display timing', 'User interaction'],
+  },
+  {
+    name: 'STM32 HMI-Controlled MAX2871 Synthesizer',
+    challenge: 'Provide operator control of an RF synthesizer through a panel HMI.',
+    architecture: 'STM32F103 communicates with a Pro-face HMI over UART/RS-232 and configures the MAX2871 over SPI.',
+    outcome: 'Integrated HMI command framing, MCU control, and RF synthesizer configuration.',
+    role: 'HMI protocol and embedded driver integration',
+    github: 'https://github.com/Suryeah/HMI-with-Bluepill-for-MAX2871',
+    tags: ['STM32F103', 'MAX2871', 'UART', 'RS-232', 'SPI'],
+    constraints: ['Serial protocol', 'RF configuration'],
+  },
+  {
+    name: 'Standalone RF Synthesizer',
+    github: 'https://github.com/Suryeah/Stand-Alone_RF_Synthesizer_With_OLED_and_Keypad',
+    tags: ['RF Synthesis', 'STM32', 'OLED', 'Keypad'],
   },
 ];
 
