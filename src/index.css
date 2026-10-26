@@ -15,14 +15,6 @@
   --focus-ring: rgba(40,86,216,0.3);
   --grid-line: rgba(40,86,216,0.055);
   --overlay-scrim: rgba(36,42,56,0.42);
-  --contact-bg: #242a38;
-  --contact-text: #f4f6f9;
-  --contact-muted: #c1c8d4;
-  --contact-field-bg: #303748;
-  --contact-field-border: rgba(255,255,255,0.2);
-  --contact-outline: rgba(255,255,255,0.25);
-  --contact-cta-bg: #f2b84b;
-  --contact-cta-text: #242a38;
   --skill-firmware: #2856d8;
   --skill-os: #b84f3a;
   --skill-platforms: #8a5a08;
@@ -43,7 +35,7 @@
   /* Text */
   --text: #242a38;
   --text-secondary: #586273;
-  --text-muted: #7b8595;
+  --text-muted: #646d7d;
 
   /* Borders & Shadows */
   --border: #dfe4ec;
@@ -90,14 +82,6 @@
   --focus-ring: rgba(156,178,255,0.35);
   --grid-line: rgba(156,178,255,0.06);
   --overlay-scrim: rgba(0,0,0,0.55);
-  --contact-bg: #10141d;
-  --contact-text: #f4f6f9;
-  --contact-muted: #c1c8d4;
-  --contact-field-bg: #252d3d;
-  --contact-field-border: rgba(255,255,255,0.2);
-  --contact-outline: rgba(255,255,255,0.25);
-  --contact-cta-bg: #ffd178;
-  --contact-cta-text: #242a38;
   --skill-firmware: #9cb2ff;
   --skill-os: #ff9b83;
   --skill-platforms: #f3c366;

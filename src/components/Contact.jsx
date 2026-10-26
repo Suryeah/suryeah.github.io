@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import styles from './Contact.module.css';
 
 const CONTACT_LINKS = [
   {
@@ -49,204 +49,63 @@ const Contact = () => {
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
     window.location.href = `mailto:surya_24@live.com?subject=${subject}&body=${body}`;
   };
-  const sectionRef = useRef();
-  useEffect(() => {
-    if (sectionRef.current) sectionRef.current.classList.add('visible');
-  }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="contact"
-      className="products-section"
-      style={{
-        background: 'var(--surface)',
-        color: 'var(--text)',
-        width: '100vw',
-        minHeight: '100vh',
-        padding: 0,
-        margin: 0,
-        boxSizing: 'border-box',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <div
-        className="container"
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          width: '100%',
-          padding: '0 1rem',
-          boxSizing: 'border-box',
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 500,
-            margin: '0 auto',
-            width: '100%',
-            background: 'none',
-            boxSizing: 'border-box',
-            padding: '2rem 1rem',
-            borderRadius: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <h2
-            style={{
-              color: 'var(--text)',
-              textAlign: 'center',
-              fontSize: '2rem',
-              marginBottom: '0.75rem',
-            }}
-          >
-            Get in Touch
-          </h2>
-          <p style={{
-            marginTop: 0,
-            marginBottom: '1rem',
-            color: 'var(--text-secondary)',
-            fontSize: '0.95rem',
-            lineHeight: 1.6,
-            textAlign: 'center',
-          }}>
+    <section id="contact" className="section section-alt" aria-labelledby="contact-title">
+      <div className={`section-inner ${styles.inner}`}>
+        <div>
+          <p className="section-eyebrow">Contact</p>
+          <h2 id="contact-title" className="section-title">Let&apos;s talk firmware</h2>
+          <p className={styles.lead}>
             Open to embedded firmware and Embedded Linux roles, with a focus on real-time systems and board bring-up.
           </p>
-          <div className="tech-tags-row" style={{ justifyContent: 'center', marginTop: 0, marginBottom: '0.85rem' }}>
-            <span className="case-chip">Open to relocation</span>
-            <span className="case-chip">Willing to work globally</span>
-            <span className="case-chip">Available for interviews</span>
+          <ul className={styles.chips}>
+            <li className="tag">Open to relocation</li>
+            <li className="tag">Willing to work globally</li>
+            <li className="tag">Available for interviews</li>
+          </ul>
+          <div className={styles.actions}>
+            <a href="/resume.pdf" download="Surya_Vardhan_Resume.pdf" className="btn btn-primary">Download Resume</a>
+            <a href="mailto:surya_24@live.com?subject=Hiring%20Discussion" className="btn btn-secondary">Email me</a>
           </div>
-          <div style={{
-            width: '100%',
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 8,
-            justifyContent: 'center',
-            marginBottom: '1rem',
-          }}>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="hero-pill-btn primary">Download Resume</a>
-            <a href="mailto:surya_24@live.com?subject=Hiring%20Discussion" className="hero-pill-btn secondary">Hiring Discussion</a>
-            <a href="mailto:surya_24@live.com?subject=Collaboration%20Request" className="hero-pill-btn secondary">Collaboration</a>
-            <a href="mailto:surya_24@live.com?subject=Research%20Query" className="hero-pill-btn secondary">Research Query</a>
-          </div>
-          <form
-            className="contact-form"
-            onSubmit={handleSubmit}
-            style={{
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1.2rem',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                gap: '1.2rem',
-                width: '100%',
-                flexDirection: 'row',
-              }}
-            >
-              <input
-                type="text"
-                placeholder="Your Name"
-                name="name"
-                autoComplete="name"
-                required
-                style={{ flex: 1, minWidth: 0 }}
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                name="email"
-                autoComplete="email"
-                required
-                style={{ flex: 1, minWidth: 0 }}
-              />
-            </div>
-            <textarea
-              placeholder="Your Message"
-              name="message"
-              required
-              style={{ width: '100%', minHeight: 120, resize: 'vertical' }}
-            ></textarea>
-            <p style={{
-              margin: '-0.35rem 0 0 0',
-              fontSize: '0.82rem',
-              color: 'var(--text-muted)',
-              textAlign: 'left',
-            }}>
-              Typical response time: within 24-48 hours.
-            </p>
-            <button
-              type="submit"
-              style={{
-                width: '100%',
-                padding: '0.8rem',
-                fontSize: '1.1rem',
-                fontWeight: 600,
-                background: 'var(--brand)',
-                color: 'var(--text-on-brand)',
-                border: 'none',
-                borderRadius: 6,
-                cursor: 'pointer',
-                marginTop: 8,
-                transition: 'background 0.2s',
-              }}
-            >
-              Open Email to Send
-            </button>
-          </form>
-          <div
-            style={{
-              marginTop: '1.5rem',
-              textAlign: 'center',
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '1.5rem',
-              flexWrap: 'wrap',
-            }}
-          >
-            {CONTACT_LINKS.map((link, idx) => (
-              <a
-                key={idx}
-                href={link.href}
-                className="contact-social-link"
-                target={link.href.startsWith('http') ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                style={{ fontSize: '1.7rem', display: 'flex', alignItems: 'center', color: 'var(--signal)' }}
-                title={link.title}
-              >
-                {link.icon}
-              </a>
-            ))}
-          </div>
+          <ul className={styles.socials}>
+            {CONTACT_LINKS.map((link) => {
+              const external = link.href.startsWith('http');
+              return (
+                <li key={link.title}>
+                  <a
+                    href={link.href}
+                    className={styles.social}
+                    aria-label={external ? `${link.title} (opens in new tab)` : link.title}
+                    title={link.title}
+                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {link.icon}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
         </div>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.row}>
+            <div className={styles.field}>
+              <label htmlFor="contact-name">Name</label>
+              <input id="contact-name" type="text" name="name" autoComplete="name" required />
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="contact-email">Email</label>
+              <input id="contact-email" type="email" name="email" autoComplete="email" required />
+            </div>
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="contact-message">Message</label>
+            <textarea id="contact-message" name="message" required />
+          </div>
+          <p className={styles.hint}>Opens your email client. Typical response time: within 24-48 hours.</p>
+          <button type="submit" className={`btn btn-primary ${styles.submit}`}>Open Email to Send</button>
+        </form>
       </div>
-      {/* Responsive styles for mobile */}
-      <style>{`
-        @media (max-width: 700px) {
-          #contact .container {
-            padding: 0 !important;
-          }
-          #contact .contact-form > div {
-            flex-direction: column !important;
-                  style={{ fontSize: '1.7rem', display: 'flex', alignItems: 'center', color: 'var(--signal)' }}
-          }
-          #contact .contact-form input {
-            width: 100% !important;
-          }
-          #contact .contact-form button {
-            font-size: 1rem !important;
-            padding: 0.7rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

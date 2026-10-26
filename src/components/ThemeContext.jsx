@@ -3,9 +3,9 @@ import { ThemeContext } from './ThemeContext.js';
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    // Try to load from localStorage, fallback to 'light'
     const stored = window.localStorage.getItem('theme');
-    return stored ? stored : 'light';
+    if (stored) return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
   useEffect(() => {

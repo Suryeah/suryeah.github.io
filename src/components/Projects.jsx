@@ -1,4 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import MaybePlaceholder from './MaybePlaceholder.jsx';
+import styles from './Projects.module.css';
+
+const FEATURED = [
+  'TI AM64x Inter-core IPC for ADC Data Transfer',
+  'AD7771 Wireless DAQ',
+  'Bluepill CAN N/W with TJA1050',
+  'STM32 HMI-Controlled MAX2871 Synthesizer',
+  'EV Battery SoC Companion',
+  'ESP32 Velocity Tracker',
+];
+
+const METRIC_PLACEHOLDER = '[METRIC: quantify the result, e.g. throughput, latency, error rate]';
 
 const PROJECTS = [
   {
@@ -153,79 +165,75 @@ const PROJECTS = [
   },
 ];
 
-const Projects = () => {
-  const sectionRef = useRef();
-  useEffect(() => {
-    if (sectionRef.current) sectionRef.current.classList.add('visible');
-  }, []);
-  return (
-    <section ref={sectionRef} id="projects" className="products-section" style={{ background: 'var(--bg-secondary)', color: 'var(--text)', width: '100vw', minHeight: '100vh', padding: 0, margin: 0 }}>
-      <div className="container">
-        <h2 style={{ color: 'var(--text)' }}>Projects</h2>
-        <p style={{ color: 'var(--text-muted)', fontSize: 15, marginTop: 6, marginBottom: 28 }}>
-          Selected embedded systems with their engineering constraints, architecture, and implementation details.
-        </p>
-        <h3 style={{ color: 'var(--text)', marginBottom: 12 }}>Featured Projects</h3>
-        <div className="products-list">
-          {PROJECTS.slice(0, 3).map((project) => (
-            <div key={project.name} className="product-card" style={{
-              background: 'var(--surface)',
-              borderRadius: 14,
-              boxShadow: 'var(--shadow-sm)',
-              padding: '1.4rem',
-              color: 'var(--text)',
-              borderTop: '3px solid var(--brand)',
-              display: 'flex', flexDirection: 'column', gap: 6,
-            }}>
-              <h3 style={{ color: 'var(--text)', margin: 0 }}>{project.name}</h3>
-              <div className="case-block">
-                <span className="case-label">Challenge:</span> {project.challenge}
+const featured = FEATURED.map((name) => PROJECTS.find((p) => p.name === name));
+const more = PROJECTS.filter((p) => !FEATURED.includes(p.name));
+
+const Projects = () => (
+  <section id="projects" className="section section-alt" aria-labelledby="projects-title">
+    <div className="section-inner">
+      <p className="section-eyebrow">Case studies</p>
+      <h2 id="projects-title" className="section-title">Projects</h2>
+      <p className="section-lead">
+        Embedded systems I built or contributed to, from the problem through the measurable result.
+      </p>
+      <ul className={styles.grid}>
+        {featured.map((project) => (
+          <li key={project.name} className={`${styles.card} spotlight`}>
+            <h3 className={styles.name}>{project.name}</h3>
+            <dl className={styles.steps}>
+              <div>
+                <dt>Problem</dt>
+                <dd>{project.challenge}</dd>
               </div>
-              <div className="case-block">
-                <span className="case-label">Architecture:</span> {project.architecture}
+              <div>
+                <dt>My contribution</dt>
+                <dd>
+                  <span className={styles.role}>{project.role}</span>
+                  {project.architecture}
+                </dd>
               </div>
-              <div className="case-block">
-                <span className="case-label">Outcome:</span> {project.outcome}
+              <div>
+                <dt>Tech stack</dt>
+                <dd>
+                  <ul className={styles.tags}>
+                    {project.tags.map((t) => <li key={t} className="tag">{t}</li>)}
+                  </ul>
+                </dd>
               </div>
-              <div className="case-role-row">
-                <span className="case-role-label">My Role</span>
-                <span className="case-role-value">{project.role}</span>
+              <div>
+                <dt>Measurable result</dt>
+                <dd>
+                  {project.outcome}{' '}
+                  <MaybePlaceholder>{project.metric ?? METRIC_PLACEHOLDER}</MaybePlaceholder>
+                </dd>
               </div>
-              <div className="tech-tags-row">
-                {project.constraints.map((t, i) => <span key={i} className="case-chip">{t}</span>)}
-              </div>
-              <div className="tech-tags-row">
-                {project.tags.map((t, i) => <span key={i} className="tech-tag">{t}</span>)}
-              </div>
-              {project.github && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer"
-                  style={{ color: 'var(--brand)', textDecoration: 'underline', fontWeight: 600, fontSize: '0.875rem', marginTop: 4 }}>
-                  View on GitHub →
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="additional-projects">
-          <h3 style={{ color: 'var(--text)' }}>More Projects</h3>
-          <div className="additional-projects-list">
-            {PROJECTS.slice(3).map((project) => {
-              const content = <><span>{project.name}</span>{project.github && <span aria-hidden="true">↗</span>}</>;
-              return project.github ? (
-                <a key={project.name} className="additional-project-link" href={project.github} target="_blank" rel="noopener noreferrer">
-                  {content}
-                </a>
-              ) : (
-                <div key={project.name} className="additional-project-link">
-                  {content}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+            </dl>
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                View on GitHub<span className="sr-only"> (opens in new tab)</span>
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+      <h3 className={styles.moreTitle}>More projects</h3>
+      <ul className={styles.moreList}>
+        {more.map((project) => (
+          <li key={project.name}>
+            {project.github ? (
+              <a className={styles.moreItem} href={project.github} target="_blank" rel="noopener noreferrer">
+                <span>{project.name}</span>
+                <span aria-hidden="true">↗</span>
+                <span className="sr-only"> (opens in new tab)</span>
+              </a>
+            ) : (
+              <span className={styles.moreItem}>{project.name}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
 
 export default Projects;

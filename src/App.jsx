@@ -8,7 +8,6 @@ import Contact from './components/Contact';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Education from './components/Education';
 import Experience from './components/Experience';
-import './App.css';
 import ThemeProvider from './components/ThemeContext.jsx';
 
 /* ── Scroll Progress Bar ── */
@@ -35,7 +34,7 @@ function Footer() {
         <a href="https://www.linkedin.com/in/surya1412" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="mailto:surya_24@live.com">Email</a>
       </div>
-      <div style={{ marginTop: '0.4rem', fontSize: '0.75rem', opacity: 0.6 }}>
+      <div className="site-footer-note">
         Built with React · Vite · Deployed on GitHub Pages
       </div>
     </footer>
@@ -46,39 +45,56 @@ function Footer() {
 function NotFound() {
   const navigate = useNavigate();
   return (
-    <div className="not-found-page" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+    <main id="main" className="not-found-page">
       <div className="not-found-code">404</div>
       <p className="not-found-msg">Page not found</p>
       <p className="not-found-sub">Looks like you wandered off the firmware path.</p>
-      <button
-        onClick={() => navigate('/')}
-        style={{
-          marginTop: '1rem',
-          padding: '0.7rem 2rem',
-          borderRadius: 30,
-          background: 'var(--gradient-brand)',
-          color: 'var(--text-on-brand)',
-          border: 'none',
-          fontWeight: 700,
-          fontSize: '1rem',
-          cursor: 'pointer',
-          fontFamily: 'var(--font-body)',
-        }}
-      >
+      <button type="button" className="btn btn-primary" onClick={() => navigate('/')}>
         Back to Home
       </button>
-    </div>
+    </main>
   );
 }
 
 function PortfolioPage() {
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const root = document.documentElement;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.dataset.revealed = 'true';
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    root.classList.add('reveal-ready');
+    document.querySelectorAll('main .section-inner').forEach((el) => io.observe(el));
+    return () => {
+      io.disconnect();
+      root.classList.remove('reveal-ready');
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleMove = (e) => {
+      const el = e.target.closest?.('.spotlight');
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    };
+    document.addEventListener('pointermove', handleMove, { passive: true });
+    return () => document.removeEventListener('pointermove', handleMove);
+  }, []);
+
   return (
-    <main className="portfolio-page">
+    <main id="main" className="portfolio-page">
       <Hero />
-      <Projects />
-      <Experience />
-      <Skills />
       <Products />
+      <Projects />
+      <Skills />
+      <Experience />
       <Education />
       <Contact />
     </main>
@@ -102,6 +118,7 @@ function AppContent() {
 
   return (
     <div className="app-content-wrapper">
+      <a href="#main" className="skip-link">Skip to content</a>
       <ScrollProgress />
       <Navbar />
       <div className="route-fade">
