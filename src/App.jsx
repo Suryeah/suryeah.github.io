@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Products from './components/Products';
+import OpenSource from './components/OpenSource';
 import Contact from './components/Contact';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Education from './components/Education';
@@ -93,6 +94,7 @@ function PortfolioPage() {
       <Hero />
       <Products />
       <Projects />
+      <OpenSource />
       <Skills />
       <Experience />
       <Education />

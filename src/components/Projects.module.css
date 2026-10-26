@@ -113,6 +113,34 @@ a.moreItem:hover {
   color: var(--brand);
 }
 
+.moreText {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.moreName {
+  color: var(--text);
+  font-weight: 600;
+}
+
+a.moreItem:hover .moreName {
+  color: var(--brand);
+}
+
+.moreDesc {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.note {
+  margin: auto 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
 @media (max-width: 860px) {
   .grid { grid-template-columns: 1fr; }
 }

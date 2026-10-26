@@ -78,6 +78,14 @@
   animation: blink 1.1s steps(1) infinite;
 }
 
+.focus {
+  margin: -0.6rem 0 1rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+}
+
 .value {
   max-width: 580px;
   margin: 0 0 1.25rem;

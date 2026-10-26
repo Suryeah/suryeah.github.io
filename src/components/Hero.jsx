@@ -1,14 +1,6 @@
 import { Link } from 'react-router-dom';
+import { hero, profile } from '../data/portfolioData.js';
 import styles from './Hero.module.css';
-
-const STATS = [
-  { value: '7+', label: 'Years in embedded' },
-  { value: '6', label: 'Products shipped' },
-  { value: '1', label: 'Patent application' },
-  { value: '1600+', label: 'Issues resolved' },
-];
-
-const CORE_STACK = ['C / Embedded C', 'Embedded Linux', 'FreeRTOS', 'STM32', 'TI Sitara / Jacinto', 'CAN · SPI · I2C · UART'];
 
 const TRACES = [
   'M118 160 H70 V90 H30', 'M118 190 H40', 'M118 220 H80 V300 H30', 'M118 250 H95 V340',
@@ -59,18 +51,17 @@ const Hero = () => {
         <div className={styles.content}>
           <p className={styles.status}>
             <span className={styles.statusDot} aria-hidden="true" />
-            Currently at Bosch Global Software Technologies
+            {hero.status}
           </p>
-          <h1 id="hero-name" className={styles.name}>Surya Vardhan</h1>
-          <p className={styles.title}>Embedded / Firmware Engineer</p>
-          <p className={styles.value}>
-            Building embedded firmware and Linux systems from board bring-up through field deployment.
-          </p>
+          <h1 id="hero-name" className={styles.name}>{profile.name}</h1>
+          <p className={styles.title}>{hero.headline}</p>
+          <p className={styles.focus}>{hero.focus}</p>
+          <p className={styles.value}>{hero.summary}</p>
           <ul className={styles.stack} aria-label="Core stack">
-            {CORE_STACK.map((item) => <li key={item} className="tag">{item}</li>)}
+            {hero.coreStack.map((item) => <li key={item} className="tag">{item}</li>)}
           </ul>
           <ul className={styles.stats} aria-label="Career highlights">
-            {STATS.map((s) => (
+            {hero.stats.map((s) => (
               <li key={s.label} className={styles.stat}>
                 <span className={styles.statValue}>{s.value}</span>
                 <span className={styles.statLabel}>{s.label}</span>
@@ -78,10 +69,11 @@ const Hero = () => {
             ))}
           </ul>
           <div className={styles.actions}>
-            <a href="/resume.pdf" download="Surya_Vardhan_Resume.pdf" className="btn btn-primary">Download Resume</a>
-            <Link to="/#contact" className="btn btn-secondary">Contact</Link>
+            <a href={profile.resumeUrl} download={profile.resumeFileName} className="btn btn-primary">Download Resume</a>
+            <Link to="/#projects" className="btn btn-secondary">View Projects</Link>
+            <Link to="/#contact" className="btn btn-secondary">Contact Me</Link>
           </div>
-          <p className={styles.note}>Open to relocation · Willing to work globally</p>
+          {hero.availability && <p className={styles.note}>{hero.availability}</p>}
         </div>
         <CircuitVisual />
       </div>

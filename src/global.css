@@ -194,17 +194,6 @@ main {
   line-height: 1.6;
 }
 
-/* Visible marker for content the owner still needs to fill in */
-.placeholder {
-  padding: 0 4px;
-  border: 1px dashed var(--status-border);
-  border-radius: 3px;
-  background: var(--status-surface);
-  color: var(--status-text);
-  font-family: var(--font-mono);
-  font-size: 12px;
-}
-
 /* Footer */
 .site-footer {
   padding: 1.8rem 1.5rem;

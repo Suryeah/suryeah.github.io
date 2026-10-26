@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { label: 'Home', to: '/#hero' },
   { label: 'Products', to: '/#products' },
   { label: 'Projects', to: '/#projects' },
+  { label: 'Open Source', to: '/#open-source' },
   { label: 'Skills', to: '/#skills' },
   { label: 'Experience', to: '/#experience' },
   { label: 'Education', to: '/#education' },
